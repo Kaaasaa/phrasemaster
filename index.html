@@ -7,529 +7,409 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="PhraseMaster">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#4A6FA5">
+<meta name="theme-color" content="#007AFF">
+<link rel="manifest" href="data:application/manifest+json;utf8,%7B%22name%22%3A%22PhraseMaster%22%2C%22short_name%22%3A%22PhraseMaster%22%2C%22display%22%3A%22standalone%22%2C%22start_url%22%3A%22.%22%2C%22background_color%22%3A%22%23F2F4F8%22%2C%22theme_color%22%3A%22%23007AFF%22%7D">
 <!-- iOS App Icon SVG inline data URI -->
 <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23EAF2FF'/%3E%3Cstop offset='100%25' stop-color='%23C7DDFB'/%3E%3C/linearGradient%3E%3ClinearGradient id='c1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232563EB'/%3E%3Cstop offset='100%25' stop-color='%231D4ED8'/%3E%3C/linearGradient%3E%3ClinearGradient id='c2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2360A5FA'/%3E%3Cstop offset='100%25' stop-color='%233B82F6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='38' y='26' width='96' height='114' rx='22' transform='rotate(-8 86 83)' fill='url(%23c2)' opacity='0.65'/%3E%3Crect x='44' y='34' width='96' height='114' rx='22' fill='url(%23c1)'/%3E%3Ctext x='92' y='106' text-anchor='middle' fill='%23FFFFFF' font-family='-apple-system,SF Pro Display,sans-serif' font-size='48' font-weight='800' letter-spacing='-1'%3EAa%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23EAF2FF'/%3E%3Cstop offset='100%25' stop-color='%23C7DDFB'/%3E%3C/linearGradient%3E%3ClinearGradient id='c1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232563EB'/%3E%3Cstop offset='100%25' stop-color='%231D4ED8'/%3E%3C/linearGradient%3E%3ClinearGradient id='c2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2360A5FA'/%3E%3Cstop offset='100%25' stop-color='%233B82F6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='38' y='26' width='96' height='114' rx='22' transform='rotate(-8 86 83)' fill='url(%23c2)' opacity='0.65'/%3E%3Crect x='44' y='34' width='96' height='114' rx='22' fill='url(%23c1)'/%3E%3Ctext x='92' y='106' text-anchor='middle' fill='%23FFFFFF' font-family='-apple-system,SF Pro Display,sans-serif' font-size='48' font-weight='800' letter-spacing='-1'%3EAa%3C/text%3E%3C/svg%3E">
 <title>PhraseMaster — 英语词组记忆与间隔重复学习工具</title>
 <style>
+/* ==========================================================================
+   PHRASEMASTER V10.0 — CONSOLIDATED FINAL-STATE DESIGN SYSTEM
+   iOS Liquid Glass · "不背单词" Minimalist Zen · Zero CSS Debt
+   ========================================================================== */
 :root {
-  --bg-body: #F4F6F9;
+  --bg-body: #F2F4F8;
   --wallpaper-bg: radial-gradient(at 15% 15%, rgba(142, 178, 196, 0.45) 0px, transparent 55%), radial-gradient(at 85% 20%, rgba(186, 204, 188, 0.45) 0px, transparent 55%), radial-gradient(at 50% 80%, rgba(198, 185, 209, 0.4) 0px, transparent 60%), #EDF2F7;
-  --bg-card: rgba(255, 255, 255, 0.76);
+  --bg-card: rgba(255, 255, 255, 0.94);
   --bg-card-solid: #FFFFFF;
-  --bg-subtle: rgba(240, 244, 248, 0.7);
-  --bg-hover: rgba(226, 232, 240, 0.75);
-  --text-main: #1E2530;
-  --text-secondary: #596579;
-  --text-muted: #8C97A8;
-  --border-color: rgba(0, 0, 0, 0.08);
-  --border-glass: rgba(255, 255, 255, 0.6);
-  --primary: #4A6FA5;
-  --primary-hover: #3C5D8C;
-  --primary-soft: rgba(74, 111, 165, 0.12);
-  --success: #5A8A70;
-  --success-hover: #4A735D;
-  --success-soft: rgba(90, 138, 112, 0.12);
-  --warning: #B57C48;
-  --warning-hover: #9E6B3E;
-  --warning-soft: rgba(181, 124, 72, 0.12);
-  --danger: #B85C5C;
-  --danger-hover: #9E4E4E;
-  --danger-soft: rgba(184, 92, 92, 0.12);
-  --purple: #7D6B90;
-  --purple-hover: #6B5B7C;
-  --purple-soft: rgba(125, 107, 144, 0.12);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 28px -4px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
-  --shadow-lg: 0 18px 44px -6px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  --bg-subtle: rgba(241, 245, 249, 0.85);
+  --bg-hover: rgba(226, 232, 240, 0.85);
+  --text-main: #111827;
+  --text-secondary: #374151;
+  --text-muted: #5B6472; /* WCAG AA compliant >= 4.6:1 contrast on light surfaces */
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.65);
+  --primary: #007AFF;
+  --primary-hover: #0062CC;
+  --primary-soft: rgba(0, 122, 255, 0.11);
+  --success: #34C759;
+  --success-soft: rgba(52, 199, 89, 0.12);
+  --warning: #D97706;
+  --warning-soft: rgba(217, 119, 6, 0.12);
+  --danger: #DC2626;
+  --danger-soft: rgba(220, 38, 38, 0.12);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 28px -6px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 18px 42px -8px rgba(15, 23, 42, 0.10), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  --bevel-highlight: inset 0 1px 0.5px rgba(255, 255, 255, 0.7);
+  --dock-surface: rgba(255, 255, 255, 0.78);
+  --dock-border: rgba(255, 255, 255, 0.65);
+  --dock-shadow: 0 14px 36px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.05);
+  --nav-slider-bg: rgba(0, 122, 255, 0.13);
+  --nav-slider-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 122, 255, 0.10);
   --radius-sm: 12px;
   --radius-md: 18px;
   --radius-lg: 24px;
   --radius-full: 9999px;
   --card-font-scale: 1;
-  --glass-blur: blur(28px) saturate(180%);
 }
 
 [data-theme="dark"] {
-  --bg-body: #0E131E;
-  --wallpaper-bg: radial-gradient(at 15% 15%, rgba(45, 65, 85, 0.6) 0px, transparent 55%), radial-gradient(at 85% 20%, rgba(35, 55, 45, 0.5) 0px, transparent 55%), radial-gradient(at 50% 80%, rgba(65, 45, 75, 0.5) 0px, transparent 60%), #0F141C;
-  --bg-card: rgba(24, 32, 46, 0.78);
-  --bg-card-solid: #172030;
-  --bg-subtle: rgba(30, 41, 59, 0.7);
-  --bg-hover: rgba(51, 65, 85, 0.75);
-  --text-main: #F1F5F9;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --border-glass: rgba(255, 255, 255, 0.12);
-  --primary: #638BBE;
-  --primary-hover: #7BA2D4;
-  --primary-soft: rgba(99, 139, 190, 0.18);
-  --success: #6EA586;
-  --success-hover: #82BA9A;
-  --success-soft: rgba(110, 165, 134, 0.18);
-  --warning: #C9905C;
-  --warning-hover: #DCA472;
-  --warning-soft: rgba(201, 144, 92, 0.18);
-  --danger: #C86E6E;
-  --danger-hover: #DC8383;
-  --danger-soft: rgba(200, 110, 110, 0.18);
-  --purple: #9482A8;
-  --purple-hover: #A997BD;
-  --purple-soft: rgba(148, 130, 168, 0.18);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 10px 28px -4px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 18px 44px -6px rgba(0, 0, 0, 0.45);
+  --bg-body: #0B0F17;
+  --wallpaper-bg: radial-gradient(at 15% 15%, rgba(45, 65, 85, 0.6) 0px, transparent 55%), radial-gradient(at 85% 20%, rgba(35, 55, 45, 0.5) 0px, transparent 55%), radial-gradient(at 50% 80%, rgba(65, 45, 75, 0.5) 0px, transparent 60%), #0B0F17;
+  --bg-card: rgba(24, 30, 42, 0.94);
+  --bg-card-solid: #181E2A;
+  --bg-subtle: rgba(30, 41, 59, 0.78);
+  --bg-hover: rgba(51, 65, 85, 0.80);
+  --text-main: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8; /* WCAG AA compliant >= 5.2:1 contrast on dark surfaces */
+  --border-color: rgba(255, 255, 255, 0.10);
+  --border-glass: rgba(255, 255, 255, 0.14);
+  --primary: #0A84FF;
+  --primary-hover: #409CFF;
+  --primary-soft: rgba(10, 132, 255, 0.18);
+  --success: #30D158;
+  --success-soft: rgba(48, 209, 88, 0.18);
+  --warning: #FF9F0A;
+  --warning-soft: rgba(255, 159, 10, 0.18);
+  --danger: #FF453A;
+  --danger-soft: rgba(255, 69, 58, 0.18);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 12px 30px -6px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 46px -8px rgba(0, 0, 0, 0.55);
+  --bevel-highlight: inset 0 1px 0.5px rgba(255, 255, 255, 0.14);
+  --dock-surface: rgba(24, 30, 42, 0.80);
+  --dock-border: rgba(255, 255, 255, 0.14);
+  --dock-shadow: 0 16px 40px rgba(0, 0, 0, 0.50), 0 2px 8px rgba(0, 0, 0, 0.30);
+  --nav-slider-bg: rgba(10, 132, 255, 0.22);
+  --nav-slider-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.18), 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+html, body {
+  min-height: 100%;
+  background: var(--bg-body);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input, select, .btn, .dock-item, .bubei-hero-capsule, .rating-btn, .lib-phrase-card {
+  touch-action: manipulation;
+}
+
+/* --- Scenic Ambient Backdrop Layer (Static GPU-Isolated) --- */
+.scenic-wallpaper-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background: var(--wallpaper-bg);
-  background-attachment: fixed;
-  background-size: cover;
-  color: var(--text-main);
-  line-height: 1.5;
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  -webkit-touch-callout: none;
-  -webkit-tap-highlight-color: transparent;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: background 0.4s ease;
+  contain: strict;
+  transform: translateZ(0);
 }
 
-/* App Shell */
+.scenic-wallpaper-layer svg {
+  opacity: 0.14;
+}
+
+[data-theme="dark"] .scenic-wallpaper-layer svg {
+  opacity: 0.08;
+}
+
+.scenic-wallpaper-layer svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- App Layout & Main Container --- */
 .app-layout {
-  display: flex;
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
-  width: 100%;
-}
-
-.sidebar {
-  width: 252px;
-  margin: 16px 0 16px 16px;
-  height: calc(100vh - 32px);
-  position: sticky;
-  top: 16px;
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  overflow-y: auto;
-  z-index: 50;
-  transition: all 0.25s ease;
 }
 
-.brand-header {
-  padding: 18px 18px 14px;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-logo {
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  background: linear-gradient(135deg, var(--primary), var(--purple));
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: -0.5px;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(74, 111, 165, 0.3);
-}
-
-.brand-title {
-  font-size: 16.5px;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.2;
-}
-
-.brand-subtitle {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.nav-menu {
-  padding: 12px 10px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.nav-section-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 10px 10px 4px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 9px 12px;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 13.5px;
-  font-weight: 500;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.nav-item:hover {
-  background: var(--bg-hover);
-  color: var(--text-main);
-  transform: translateX(2px);
-}
-
-.nav-item:active {
-  transform: scale(0.98);
-}
-
-.nav-item.active {
-  background: var(--primary-soft);
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.nav-item-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.nav-badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: var(--radius-full);
-  background: var(--bg-hover);
-  color: var(--text-secondary);
-}
-
-.nav-item.active .nav-badge {
-  background: var(--primary);
-  color: #FFFFFF;
-}
-
-.sidebar-footer {
-  padding: 14px 16px;
-  border-top: 1px solid var(--border-color);
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.storage-indicator {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
-  color: var(--success);
-  font-weight: 600;
-}
-
-/* Main Content Area */
 .main-wrapper {
   flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
+.content-container {
+  flex: 1;
+  width: 100%;
+  padding: 14px 16px calc(120px + env(safe-area-inset-bottom));
+}
+
+/* --- Sticky Topbar --- */
 .topbar {
+  position: sticky;
+  top: max(8px, env(safe-area-inset-top));
+  z-index: 90;
+  margin: 10px 16px 0;
+  padding: 10px 18px;
+  border-radius: 20px;
   background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-md);
-  margin: 16px 20px 0;
-  padding: 12px 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--bevel-highlight), var(--shadow-sm);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.25s ease;
+  transition: padding 0.25s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.topbar.topbar-scrolled {
+  padding: 7px 16px;
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  box-shadow: var(--bevel-highlight), var(--shadow-md);
 }
 
 .topbar-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .page-heading {
-  font-size: 17.5px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--text-main);
 }
 
 .topbar-right {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.reminder-banner {
-  background: var(--warning-soft);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--warning);
-  border-radius: var(--radius-md);
-  color: var(--warning);
-  margin: 12px 20px 0;
-  padding: 10px 18px;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.content-container {
-  padding: 20px 20px 48px;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  flex: 1;
-}
-
-/* Views */
+/* --- View Switching --- */
 .view-section {
   display: none;
+  contain: layout style;
 }
 
 .view-section.active {
   display: block;
+  animation: viewSwitchFade 0.16s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
-/* Cards & Grid with iOS Squircle Standard */
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
+@keyframes viewSwitchFade {
+  from { opacity: 0.98; transform: translate3d(0, 3px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
+/* --- Cards & Containers --- */
+.card,
+.flashcard-box,
+.bubei-minimal-hero-card,
+.home-details-drawer {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  box-shadow: var(--bevel-highlight), var(--shadow-md);
+  padding: 24px;
+  margin-bottom: 18px;
 }
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-.card {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  padding: 24px;
-  margin-bottom: 20px;
-  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
-.stat-card {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-md);
-  padding: 18px 20px;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  transition: transform 0.15s ease;
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.stat-card:hover {
-  transform: translateY(-2px);
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
 }
 
-.stat-label {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--text-muted);
+/* --- Buttons & Icon Controls --- */
+.btn,
+.btn-icon,
+.btn-card-icon,
+.form-group,
+input,
+select {
+  scroll-margin-top: 90px;
+  scroll-margin-bottom: 110px;
 }
 
-.stat-value {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--text-main);
-  line-height: 1.1;
-  font-feature-settings: "tnum";
-}
-
-.stat-sub {
-  font-size: 11.5px;
-  color: var(--text-secondary);
-}
-
-/* Buttons with Squircle & Tactile Press */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 9px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 13.5px;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
+  font-family: inherit;
   border: 1px solid transparent;
-  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.25, 1, 0.3, 1), background 0.18s ease, box-shadow 0.18s ease;
   -webkit-tap-highlight-color: transparent;
-  text-decoration: none;
+  user-select: none;
 }
 
-.btn:active:not(:disabled) {
-  transform: scale(0.97);
+.btn:active {
+  transform: scale(0.95);
 }
 
-.btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+.btn-sm {
+  padding: 6px 13px;
+  font-size: 12.5px;
+}
+
+.btn-lg {
+  padding: 13px 26px;
+  font-size: 16px;
 }
 
 .btn-primary {
   background: var(--primary);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(74, 111, 165, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 122, 255, 0.25);
 }
 
-.btn-primary:hover:not(:disabled) {
+.btn-primary:hover {
   background: var(--primary-hover);
-  box-shadow: 0 6px 18px rgba(74, 111, 165, 0.35);
 }
 
 .btn-secondary {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--bg-subtle);
   color: var(--text-main);
   border-color: var(--border-color);
-  box-shadow: var(--shadow-sm);
 }
 
-.btn-secondary:hover:not(:disabled) {
+.btn-secondary:hover {
   background: var(--bg-hover);
 }
 
-.btn-success {
-  background: var(--success);
-  color: #FFFFFF;
-}
-
-.btn-warning {
-  background: var(--warning);
-  color: #FFFFFF;
-}
-
-.btn-danger {
-  background: var(--danger);
-  color: #FFFFFF;
-}
-
+.btn-danger,
 .btn-outline-danger {
-  background: transparent;
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: rgba(220, 38, 38, 0.22);
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.25, 1, 0.3, 1), background 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-icon:hover {
+  background: var(--bg-hover);
+}
+
+.btn-icon:active {
+  transform: scale(0.92);
+}
+
+.btn-card-icon {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.25, 1, 0.3, 1), border-color 0.16s ease, color 0.16s ease;
+}
+
+.btn-card-icon:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-card-icon:active {
+  transform: scale(0.92);
+}
+
+.btn-card-icon.btn-danger-icon:hover {
   color: var(--danger);
   border-color: var(--danger);
 }
 
-.btn-outline-danger:hover:not(:disabled) {
-  background: var(--danger-soft);
-}
-
-.btn-lg {
-  padding: 12px 24px;
-  font-size: 15.5px;
-  border-radius: var(--radius-md);
-}
-
-.btn-sm {
-  padding: 6px 12px;
-  font-size: 12.5px;
-  border-radius: 10px;
-}
-
-/* Badges & Tags */
+/* --- Minimalist Monochrome Badges --- */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
+  padding: 3px 9px;
   border-radius: var(--radius-full);
   font-size: 11.5px;
   font-weight: 600;
-  line-height: 1.3;
-}
-
-.badge-new { background: var(--primary-soft); color: var(--primary); }
-.badge-learning { background: var(--warning-soft); color: var(--warning); }
-.badge-review { background: var(--purple-soft); color: var(--purple); }
-.badge-mastered { background: var(--success-soft); color: var(--success); }
-.badge-paused { background: var(--bg-hover); color: var(--text-muted); }
-.badge-purple { background: var(--purple-soft); color: var(--purple); }
-
-/* Progress Bar */
-.progress-track {
-  width: 100%;
-  height: 8px;
   background: var(--bg-subtle);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  position: relative;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
 }
 
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--purple));
-  border-radius: var(--radius-full);
-  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+.badge-learning,
+.badge-review {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: transparent;
 }
 
-/* Forms & Inputs */
+/* --- Forms & Inputs --- */
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .form-label {
@@ -540,279 +420,597 @@ body {
   margin-bottom: 6px;
 }
 
-.form-control, .form-select, .form-textarea {
+.form-control,
+.form-select,
+.form-textarea {
   width: 100%;
-  padding: 10px 14px;
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  padding: 9px 13px;
+  background: var(--bg-subtle);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   color: var(--text-main);
   font-size: 14px;
   font-family: inherit;
-  transition: all 0.15s ease;
-  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.form-control:focus, .form-select:focus, .form-textarea:focus {
+.form-control:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-soft);
 }
 
-.form-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* Tables */
-.table-responsive {
+/* --- Progress Track & Fill --- */
+.progress-track {
   width: 100%;
-  overflow-x: auto;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  text-align: left;
-}
-
-.data-table th, .data-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.data-table th {
+  height: 5px;
   background: var(--bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, #409CFF 100%);
+  border-radius: var(--radius-full);
+  transition: width 0.32s cubic-bezier(0.25, 1, 0.3, 1);
+  transform: translateZ(0);
+}
+
+.progress-track.progress-pulse {
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* --- Tab 1: Minimalist Home ("不背单词" Immersive First Screen) --- */
+.bubei-home-shell {
+  max-width: 560px;
+  margin: 8px auto 24px;
+}
+
+.bubei-minimal-hero-card {
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bubei-dual-hero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.bubei-hero-capsule {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.bubei-hero-capsule:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.bubei-hero-capsule:active {
+  transform: scale(0.96);
+}
+
+.bubei-capsule-en-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.bubei-capsule-num {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  color: var(--text-main);
+}
+
+.bubei-capsule-review .bubei-capsule-num {
+  color: var(--primary);
+}
+
+.bubei-main-start-btn {
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.bubei-secondary-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.btn-minimal-sub {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.btn-minimal-sub:hover {
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.bubei-sub-divider {
+  color: var(--text-muted);
+}
+
+/* --- Collapsible Home Details Drawer --- */
+.home-details-drawer {
+  padding: 0;
+  overflow: hidden;
+}
+
+.home-details-summary {
+  list-style: none;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.home-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.drawer-chevron {
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+.home-details-drawer[open] .drawer-chevron {
+  transform: rotate(180deg);
+}
+
+.home-details-content {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bubei-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding-top: 14px;
+}
+
+@media (max-width: 640px) {
+  .bubei-metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bubei-mini-glass {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.bubei-mini-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.bubei-mini-val {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bubei-mini-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.bubei-bottom-panels {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .bubei-bottom-panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bubei-panel-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.bubei-panel-title {
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-secondary);
+  margin-bottom: 10px;
 }
 
-.data-table tr:hover td {
-  background: var(--bg-hover);
+.bubei-dist-pills,
+.bubei-mode-pills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
-/* Study Flashcard Arena */
+.bubei-dist-item,
+.bubei-mode-chip {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-main);
+}
+
+.bubei-mode-chip {
+  cursor: pointer;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.bubei-mode-chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* --- Active Study Arena & Flashcard --- */
 .study-arena {
   max-width: 680px;
   margin: 0 auto;
 }
 
-.study-header-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
 .flashcard-box {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: 36px 30px;
-  min-height: 260px;
+  position: relative;
+  padding: 36px 28px;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 24px;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+  justify-content: space-between;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.32s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
-.flashcard-box:active {
-  transform: scale(0.99);
+#studyFlashcardContainer.swiping {
+  transition: none;
 }
 
-.flashcard-prompt-type {
+.study-swipe-badge {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.92);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
   font-size: 12px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+  font-weight: 600;
+  background: var(--primary-soft);
+  color: var(--primary);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  z-index: 10;
+}
+
+.study-swipe-badge.visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 
 .flashcard-main-phrase {
-  font-size: calc(26px * var(--card-font-scale, 1));
+  font-size: calc(30px * var(--card-font-scale));
   font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--text-main);
-  margin-bottom: 12px;
   line-height: 1.25;
 }
 
 .flashcard-hint {
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--text-muted);
   margin-top: 6px;
-  font-style: italic;
 }
 
 .flashcard-divider {
-  width: 100%;
   height: 1px;
   background: var(--border-color);
-  margin: 20px 0;
-}
-
-.flashcard-answer-area {
-  animation: fadeIn 0.25s ease-in-out;
-  width: 100%;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  margin: 18px 0;
 }
 
 .meaning-title {
-  font-size: calc(18px * var(--card-font-scale, 1));
-  font-weight: 700;
-  color: var(--success);
-  margin-bottom: 12px;
+  font-size: calc(19px * var(--card-font-scale));
+  font-weight: 600;
+  color: var(--text-main);
 }
 
 .example-box {
   background: var(--bg-subtle);
-  border-left: 3px solid var(--primary);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 12px 16px;
-  text-align: left;
-  margin-top: 14px;
-  font-size: 13.5px;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 12px 0;
 }
 
 .example-en {
+  font-size: calc(14.5px * var(--card-font-scale));
   color: var(--text-main);
-  margin-bottom: 4px;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 .example-zh {
+  font-size: 13.5px;
   color: var(--text-muted);
-  font-size: 12.5px;
+  margin-top: 4px;
+  line-height: 1.5;
 }
 
-/* Rating Grid */
+mark.bubei-phrase-highlight {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 5px;
+  border-bottom: 1.5px dashed var(--primary);
+  cursor: pointer;
+}
+
+/* --- Rating Grid with Compact SM-2 Interval Transparency --- */
 .rating-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .rating-btn {
+  padding: 11px 6px;
+  border-radius: 16px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 8px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  gap: 2px;
   cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.rating-btn:active {
-  transform: scale(0.95);
+  transition: transform 0.16s cubic-bezier(0.25, 1, 0.3, 1), border-color 0.16s ease, background 0.16s ease;
 }
 
 .rating-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  border-color: var(--primary);
+  background: var(--primary-soft);
 }
 
-.rating-btn.rate-0 { border-bottom: 3px solid var(--danger); }
-.rating-btn.rate-1 { border-bottom: 3px solid var(--warning); }
-.rating-btn.rate-2 { border-bottom: 3px solid var(--primary); }
-.rating-btn.rate-3 { border-bottom: 3px solid var(--success); }
+.rating-btn:active {
+  transform: scale(0.94);
+}
 
 .rating-title {
   font-size: 14px;
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 2px;
 }
 
 .rating-desc {
   font-size: 11px;
+  font-weight: 500;
   color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
-.kbd-tag {
-  display: inline-block;
-  padding: 2px 5px;
-  font-size: 10px;
-  font-family: monospace;
-  background: var(--bg-hover);
-  border-radius: 4px;
+/* --- Tab 2: Library Sub-Navigation & Progressive Disclosure Cards --- */
+.library-hub-subnav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 6px;
+  margin-bottom: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  scrollbar-width: none;
+}
+
+.lib-subnav-btn {
+  flex: 1;
+  min-width: max-content;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 11px;
+  background: transparent;
   color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.lib-subnav-btn.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.lib-sticky-toolbar {
+  position: sticky;
+  top: 58px;
+  z-index: 40;
+  background: var(--bg-card);
+  padding: 10px 12px;
+  margin: -6px -6px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.lib-phrase-card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lib-phrase-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 15px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  contain: layout style;
+  transition: border-color 0.18s ease;
+}
+
+.lib-phrase-card:hover {
+  border-color: rgba(0, 122, 255, 0.35);
+}
+
+.lib-card-title {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.lib-card-meaning {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.lib-card-collapsible {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
   margin-top: 4px;
 }
 
-/* Bar Charts */
-.bar-chart-wrap {
+.lib-phrase-card.expanded .lib-card-collapsible {
   display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  height: 160px;
-  padding-top: 20px;
 }
 
-.bar-col {
-  flex: 1;
+.lib-card-expand-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: transform 0.22s ease;
+}
+
+.lib-phrase-card.expanded .lib-card-expand-hint {
+  transform: rotate(180deg);
+}
+
+.lib-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  padding-top: 7px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* --- Tables & Swatches --- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+}
+
+.wallpaper-swatch-card {
+  padding: 10px 8px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-subtle);
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  justify-content: flex-end;
-  gap: 4px;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease;
 }
 
-.bar-fill {
-  width: 100%;
-  max-width: 32px;
-  background: var(--primary);
-  border-radius: 6px 6px 0 0;
-  transition: height 0.4s ease;
-  min-height: 2px;
+.wallpaper-swatch-card.active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
 }
 
-.bar-fill.secondary {
-  background: var(--purple);
+.wallpaper-swatch-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
 }
 
-.bar-label {
-  font-size: 10.5px;
-  color: var(--text-muted);
-}
-
-.bar-val {
-  font-size: 10px;
-  font-weight: 700;
+.wallpaper-swatch-title {
+  font-size: 11.5px;
+  font-weight: 600;
   color: var(--text-secondary);
 }
 
-/* Modal & Toast */
+/* --- Modals & Toasts --- */
 .modal-backdrop {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   display: none;
   align-items: center;
   justify-content: center;
@@ -825,41 +1023,43 @@ body {
 }
 
 .modal-panel {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
   box-shadow: var(--shadow-lg);
-  max-width: 520px;
+  max-width: 500px;
   width: 100%;
-  padding: 26px;
-  animation: modalPop 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-@keyframes modalPop {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  padding: 22px;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .modal-title {
-  font-size: 17.5px;
+  font-size: 17px;
   font-weight: 700;
-  color: var(--text-main);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
 }
 
 .toast-container {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 2000;
+  bottom: calc(92px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -867,865 +1067,50 @@ body {
 }
 
 .toast-msg {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--bg-card-solid);
   color: var(--text-main);
-  border: 1px solid var(--border-glass);
-  padding: 10px 18px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  padding: 9px 18px;
   border-radius: var(--radius-full);
   font-size: 13px;
   font-weight: 600;
-  box-shadow: var(--shadow-lg);
-  animation: toastFade 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@keyframes toastFade {
-  from { opacity: 0; transform: translateY(12px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* iOS Floating Frosted Glass Bottom Dock */
+/* --- iOS Floating Frosted-Glass Bottom Dock & Sliding Pill --- */
 .ios-bottom-dock {
-  display: none;
-  position: fixed;
-  bottom: max(14px, env(safe-area-inset-bottom));
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 24px);
-  max-width: 460px;
-  background: var(--bg-card);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  border: 1px solid var(--border-glass);
-  border-radius: 28px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-  padding: 6px 8px;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-}
-
-.dock-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  padding: 6px 12px;
-  border-radius: 16px;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
-  -webkit-tap-highlight-color: transparent;
-  font-size: 11px;
-  font-weight: 500;
-  gap: 3px;
-  flex: 1;
-}
-
-.dock-item .dock-icon {
-  font-size: 19px;
-  line-height: 1;
-  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.dock-item:active {
-  transform: scale(0.92);
-}
-
-.dock-item.active {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.dock-item.active .dock-icon {
-  transform: scale(1.12);
-}
-
-.dock-badge {
-  position: absolute;
-  top: 3px;
-  right: 18%;
-  background: var(--danger);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 1px 5px;
-  border-radius: 9999px;
-  min-width: 16px;
-  text-align: center;
-  line-height: 1.2;
-}
-
-/* Wallpaper Swatch Cards in Settings */
-.wallpaper-swatch-card {
-  border: 2px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 8px 6px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  transition: all 0.15s ease;
-}
-
-.wallpaper-swatch-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--primary);
-}
-
-.wallpaper-swatch-card.active {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px var(--primary-soft);
-}
-
-.wallpaper-swatch-circle {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.wallpaper-swatch-title {
-  font-size: 11px;
-  color: var(--text-secondary);
-  text-align: center;
-  font-weight: 600;
-}
-
-/* Mobile Responsive */
-@media (max-width: 860px) {
-  .app-layout {
-    flex-direction: column;
-  }
-  .sidebar {
-    display: none;
-  }
-  .topbar {
-    margin: 10px 12px 0;
-    padding: 10px 14px;
-    border-radius: var(--radius-md);
-  }
-  .content-container {
-    padding: 14px 12px calc(86px + env(safe-area-inset-bottom));
-  }
-  .rating-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .ios-bottom-dock {
-    display: flex;
-  }
-  .toast-container {
-    bottom: calc(76px + env(safe-area-inset-bottom));
-    right: 16px;
-  }
-}
-
-/* ==========================================================================
-   iOS LIQUID GLASS (SOLARIUM) & "不背单词" (BUBEI DANCI) AESTHETIC ENGINE
-   ========================================================================== */
-:root {
-  --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.56) 0%, rgba(255, 255, 255, 0.28) 100%);
-  --bg-subtle: rgba(255, 255, 255, 0.36);
-  --bg-hover: rgba(255, 255, 255, 0.52);
-  --border-glass: rgba(255, 255, 255, 0.72);
-  --glass-blur: blur(36px) saturate(210%) contrast(104%);
-  --liquid-specular:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.85),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.28),
-    0 16px 40px -6px rgba(15, 23, 42, 0.10),
-    0 4px 12px -2px rgba(15, 23, 42, 0.04);
-  --liquid-pill-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.88),
-    0 8px 24px -4px rgba(15, 23, 42, 0.08);
-}
-
-[data-theme="dark"] {
-  --bg-card: linear-gradient(135deg, rgba(30, 41, 59, 0.62) 0%, rgba(15, 23, 42, 0.38) 100%);
-  --bg-subtle: rgba(30, 41, 59, 0.45);
-  --bg-hover: rgba(51, 65, 85, 0.55);
-  --border-glass: rgba(255, 255, 255, 0.18);
-  --liquid-specular:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.26),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
-    0 20px 48px -6px rgba(0, 0, 0, 0.48),
-    0 4px 14px -2px rgba(0, 0, 0, 0.28);
-  --liquid-pill-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.22),
-    0 8px 24px -4px rgba(0, 0, 0, 0.4);
-}
-
-/* Scenic Atmospheric SVG Backdrop Layer */
-.scenic-wallpaper-layer {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.85;
-  transition: opacity 0.5s ease;
-}
-
-/* Apply True iOS Liquid Glass Specular Refraction to Core Surfaces */
-.sidebar,
-.topbar,
-.card,
-.stat-card,
-.flashcard-box,
-.ios-bottom-dock {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--liquid-specular);
-}
-
-.topbar {
-  border-radius: 9999px;
-  padding: 10px 20px;
-}
-
-.btn {
-  border-radius: 9999px;
-  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn-secondary {
-  background: var(--bg-subtle);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--liquid-pill-shadow);
-}
-
-.btn-secondary:hover {
-  background: var(--bg-hover);
-  transform: translateY(-1.5px);
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, #3B5988 100%);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), 0 8px 22px rgba(74, 111, 165, 0.32);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-}
-
-/* "不背单词" (Bubei Danci) Immersive Home Screen Architecture */
-.bubei-home-shell {
-  max-width: 880px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-top: 6px;
-}
-
-/* Poetic Daily Quote Floating Glass Pill */
-.bubei-quote-banner {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: 28px;
-  box-shadow: var(--liquid-specular);
-  padding: 18px 26px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  position: relative;
-  overflow: hidden;
-}
-
-.bubei-quote-en {
-  font-size: 15.5px;
-  font-weight: 700;
-  color: var(--text-main);
-  letter-spacing: -0.2px;
-  line-height: 1.4;
-}
-
-.bubei-quote-zh {
-  font-size: 12.5px;
-  color: var(--text-secondary);
-  margin-top: 3px;
-}
-
-.bubei-quote-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.bubei-icon-pill {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border-glass);
-  background: var(--bg-subtle);
-  color: var(--text-main);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: var(--liquid-pill-shadow);
-  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.bubei-icon-pill:hover {
-  transform: scale(1.08);
-  background: var(--bg-hover);
-}
-
-/* Signature "不背单词" Dual Learn | Review Liquid-Glass Hero Capsules */
-.bubei-dual-hero {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.bubei-hero-capsule {
-  background: var(--bg-card);
-  backdrop-filter: blur(42px) saturate(220%) contrast(106%);
-  -webkit-backdrop-filter: blur(42px) saturate(220%) contrast(106%);
-  border: 1.5px solid var(--border-glass);
-  border-radius: 32px;
-  box-shadow: var(--liquid-specular);
-  padding: 28px 30px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 186px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
-  user-select: none;
-}
-
-.bubei-hero-capsule::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: -20%;
-  width: 140%;
-  height: 80%;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-[data-theme="dark"] .bubei-hero-capsule::before {
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.09) 0%, transparent 70%);
-}
-
-.bubei-hero-capsule:hover {
-  transform: translateY(-5px) scale(1.01);
-  border-color: var(--primary);
-}
-
-.bubei-hero-capsule:active {
-  transform: scale(0.975);
-}
-
-.bubei-capsule-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.bubei-capsule-en-label {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.bubei-capsule-num {
-  font-size: 54px;
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -1.5px;
-  color: var(--text-main);
-  margin: 14px 0 8px;
-  font-feature-settings: "tnum";
-}
-
-.bubei-capsule-learn .bubei-capsule-num {
-  color: var(--primary);
-}
-
-.bubei-capsule-review .bubei-capsule-num {
-  color: var(--warning);
-}
-
-.bubei-capsule-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 13px;
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-
-.bubei-capsule-arrow {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-glass);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: var(--text-main);
-}
-
-/* Primary Session Control Liquid Pod */
-.bubei-session-pod {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: 28px;
-  box-shadow: var(--liquid-specular);
-  padding: 20px 26px;
-}
-
-/* Compact Translucent Glass Status Strip */
-.bubei-metrics-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-.bubei-mini-glass {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-  border-radius: 22px;
-  box-shadow: var(--liquid-pill-shadow);
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.bubei-mini-label {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.bubei-mini-val {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--text-main);
-  font-feature-settings: "tnum";
-  margin-top: 2px;
-}
-
-.bubei-mini-sub {
-  font-size: 11px;
-  color: var(--text-secondary);
-}
-
-/* Memory State & Quick Mode Pill Dock */
-.bubei-bottom-panels {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 16px;
-}
-
-.bubei-state-pills {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.bubei-state-item {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.bubei-mode-pills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
-}
-
-.bubei-mode-pill {
-  justify-content: flex-start !important;
-  padding: 10px 14px !important;
-  border-radius: 16px !important;
-  font-size: 13px !important;
-}
-
-/* "不背单词" Context Example Target Phrase Highlight */
-mark.bubei-phrase-highlight {
-  background: linear-gradient(120deg, rgba(74, 111, 165, 0.22) 0%, rgba(125, 107, 144, 0.24) 100%);
-  color: var(--primary);
-  font-weight: 800;
-  padding: 1px 7px;
-  border-radius: 8px;
-  border-bottom: 2px solid var(--primary);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-[data-theme="dark"] mark.bubei-phrase-highlight {
-  background: linear-gradient(120deg, rgba(99, 139, 190, 0.28) 0%, rgba(148, 130, 168, 0.28) 100%);
-  color: #93C5FD;
-  border-bottom-color: #638BBE;
-}
-
-/* Liquid Glass Flashcard & Rating Capsules */
-.flashcard-box {
-  border-radius: 32px;
-  padding: 32px;
-}
-
-.rating-btn {
-  background: var(--bg-subtle);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid var(--border-glass);
-  border-radius: 22px;
-  box-shadow: var(--liquid-pill-shadow);
-  padding: 14px 12px;
-  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.rating-btn:hover {
-  transform: translateY(-3px) scale(1.01);
-}
-
-@media (max-width: 860px) {
-  .bubei-dual-hero {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  .bubei-hero-capsule {
-    padding: 20px 18px;
-    min-height: 154px;
-    border-radius: 26px;
-  }
-  .bubei-capsule-num {
-    font-size: 40px;
-  }
-  .bubei-metrics-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .bubei-bottom-panels {
-    grid-template-columns: 1fr;
-  }
-  .topbar {
-    border-radius: 22px;
-  }
-}
-
-
-/* ==========================================================================
-   PHRASEMASTER V5.0 — MOBILE-FIRST 3-TAB ARCHITECTURE & iOS UX SPECIFICATION
-   Module 1: Typography System & Hierarchy (-apple-system, SF Pro Display)
-   Module 2: Smooth Layered Card Shadows & 16px-20px Border Radius
-   Module 3: Adaptive Dark Mode (@media prefers-color-scheme: dark + [data-theme="dark"])
-   Module 4: iOS Floating Frosted-Glass Bottom Navigation & Spring Sliding Pill (.nav-slider)
-   Module 5: Fullscreen Immersive Study Session Mode & Library Card List
-   ========================================================================== */
-
-/* --- Module 1 & 2: Design Tokens, Typography & Smooth Layered Cards --- */
-:root {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
-
-  /* Low-saturation, refined light surfaces */
-  --bg-body: #F3F5F8;
-  --bg-card: rgba(255, 255, 255, 0.84);
-  --bg-card-solid: #FFFFFF;
-  --bg-subtle: rgba(241, 245, 249, 0.78);
-  --bg-hover: rgba(226, 232, 240, 0.65);
-  --border-color: rgba(15, 23, 42, 0.06);
-  --border-glass: rgba(255, 255, 255, 0.76);
-
-  /* Smooth Layered Shadows (replacing harsh single shadows) */
-  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.03), 0 4px 12px rgba(15, 23, 42, 0.02);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.04), 0 12px 28px -4px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 8px 20px rgba(15, 23, 42, 0.05), 0 20px 44px -8px rgba(15, 23, 42, 0.08);
-  --liquid-specular:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.85),
-    0 4px 12px rgba(15, 23, 42, 0.04),
-    0 12px 28px -4px rgba(15, 23, 42, 0.06);
-
-  /* Dock & Sliding Pill tokens */
-  --dock-surface: rgba(255, 255, 255, 0.72);
-  --dock-border: rgba(255, 255, 255, 0.78);
-  --dock-shadow:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.85),
-    0 6px 16px rgba(15, 23, 42, 0.06),
-    0 18px 38px -4px rgba(15, 23, 42, 0.12);
-  --nav-slider-bg: rgba(74, 111, 165, 0.14);
-  --nav-slider-shadow:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.75),
-    0 2px 8px rgba(74, 111, 165, 0.12);
-}
-
-/* --- Module 3: Adaptive Dark Mode (@media prefers-color-scheme: dark & [data-theme="dark"]) --- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg-body: #0B101B;
-    --bg-card: rgba(24, 33, 48, 0.80);
-    --bg-card-solid: #161F2E;
-    --bg-subtle: rgba(30, 41, 59, 0.65);
-    --bg-hover: rgba(51, 65, 85, 0.65);
-    --text-main: #F1F5F9;
-    --text-secondary: #94A3B8;
-    --text-muted: #64748B;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-glass: rgba(255, 255, 255, 0.14);
-    --primary: #638BBE;
-    --primary-hover: #7BA2D4;
-    --primary-soft: rgba(99, 139, 190, 0.20);
-    --success: #6EA586;
-    --warning: #C9905C;
-    --danger: #C86E6E;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.24), 0 6px 16px rgba(0, 0, 0, 0.18);
-    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.28), 0 16px 36px -4px rgba(0, 0, 0, 0.38);
-    --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.34), 0 24px 48px -6px rgba(0, 0, 0, 0.48);
-    --liquid-specular:
-      inset 0 1px 0.5px rgba(255, 255, 255, 0.16),
-      0 6px 16px rgba(0, 0, 0, 0.28),
-      0 16px 36px -4px rgba(0, 0, 0, 0.38);
-    --dock-surface: rgba(20, 28, 42, 0.74);
-    --dock-border: rgba(255, 255, 255, 0.16);
-    --dock-shadow:
-      inset 0 1px 0.5px rgba(255, 255, 255, 0.18),
-      0 8px 20px rgba(0, 0, 0, 0.38),
-      0 20px 44px -4px rgba(0, 0, 0, 0.52);
-    --nav-slider-bg: rgba(99, 139, 190, 0.24);
-    --nav-slider-shadow:
-      inset 0 1px 0.5px rgba(255, 255, 255, 0.22),
-      0 2px 10px rgba(0, 0, 0, 0.28);
-  }
-}
-
-[data-theme="dark"] {
-  --bg-body: #0B101B;
-  --bg-card: rgba(24, 33, 48, 0.80);
-  --bg-card-solid: #161F2E;
-  --bg-subtle: rgba(30, 41, 59, 0.65);
-  --bg-hover: rgba(51, 65, 85, 0.65);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-glass: rgba(255, 255, 255, 0.14);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.24), 0 6px 16px rgba(0, 0, 0, 0.18);
-  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.28), 0 16px 36px -4px rgba(0, 0, 0, 0.38);
-  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.34), 0 24px 48px -6px rgba(0, 0, 0, 0.48);
-  --liquid-specular:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.16),
-    0 6px 16px rgba(0, 0, 0, 0.28),
-    0 16px 36px -4px rgba(0, 0, 0, 0.38);
-  --dock-surface: rgba(20, 28, 42, 0.74);
-  --dock-border: rgba(255, 255, 255, 0.16);
-  --dock-shadow:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.18),
-    0 8px 20px rgba(0, 0, 0, 0.38),
-    0 20px 44px -4px rgba(0, 0, 0, 0.52);
-  --nav-slider-bg: rgba(99, 139, 190, 0.24);
-  --nav-slider-shadow:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.22),
-    0 2px 10px rgba(0, 0, 0, 0.28);
-}
-
-body {
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Converge into Unified Mobile-First 3-Tab Shell (hide legacy left sidebar) */
-.sidebar {
-  display: none !important;
-}
-
-.app-layout {
-  display: block;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.main-wrapper {
-  max-width: 780px;
-  margin: 0 auto;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.topbar {
-  margin: 12px 16px 0;
-  padding: 10px 18px;
-  border-radius: 20px;
-  background: var(--bg-card);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--shadow-sm);
-  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.25, 1, 0.3, 1);
-}
-
-.content-container {
-  padding: 16px 16px calc(110px + env(safe-area-inset-bottom));
-  flex: 1;
-}
-
-/* SmoothView fade & slide transition */
-.view-section.active {
-  display: block;
-  animation: viewSwitchFade 0.28s cubic-bezier(0.25, 1, 0.3, 1);
-}
-
-@keyframes viewSwitchFade {
-  from {
-    opacity: 0.98;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* --- Typography Hierarchy Specification --- */
-/* Main Phrase: 24px - 28px, heavy weight */
-.flashcard-main-phrase {
-  font-family: var(--font-sans);
-  font-size: calc(27px * var(--card-font-scale, 1));
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  color: var(--text-main);
-  margin-bottom: 12px;
-}
-
-/* Meaning: 16px - 18px, medium-bold weight */
-.meaning-title {
-  font-family: var(--font-sans);
-  font-size: calc(17px * var(--card-font-scale, 1));
-  font-weight: 700;
-  line-height: 1.45;
-  color: var(--success);
-  margin-bottom: 12px;
-}
-
-/* Example Sentence: 14px - 15px, line-height 1.6 */
-.example-box {
-  font-size: 14.5px;
-  line-height: 1.6;
-  border-radius: 14px;
-  padding: 14px 16px;
-  background: var(--bg-subtle);
-  border-left: 3.5px solid var(--primary);
-}
-
-.example-en {
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: var(--text-main);
-  margin-bottom: 4px;
-}
-
-.example-zh {
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--text-secondary);
-}
-
-/* --- Card Texture: 16px-20px Radius & Smooth Layered Shadows --- */
-.card,
-.bubei-hero-capsule,
-.bubei-session-pod,
-.bubei-mini-glass,
-.flashcard-box {
-  border-radius: 18px;
-  background: var(--bg-card);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--shadow-md);
-}
-
-.flashcard-box {
-  border-radius: 20px;
-  box-shadow: var(--shadow-lg);
-}
-
-/* --- Module 4: iOS Floating Frosted-Glass Bottom Navigation Bar --- */
-.ios-bottom-dock {
-  display: flex !important;
   position: fixed;
   bottom: calc(20px + env(safe-area-inset-bottom));
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   width: calc(100% - 32px);
   max-width: 380px;
   height: 62px;
   padding: 5px;
   background: var(--dock-surface);
-  -webkit-backdrop-filter: blur(25px) saturate(190%);
-  backdrop-filter: blur(25px) saturate(190%);
+  -webkit-backdrop-filter: blur(16px) saturate(190%);
+  backdrop-filter: blur(16px) saturate(190%);
   border: 1px solid var(--dock-border);
-  border-radius: 9999px;
-  box-shadow: var(--dock-shadow);
+  border-radius: var(--radius-full);
+  box-shadow: var(--bevel-highlight), var(--dock-shadow);
   justify-content: space-between;
   align-items: stretch;
-  z-index: 1000;
-  user-select: none;
-  -webkit-user-select: none;
-  transition:
-    transform 0.45s cubic-bezier(0.25, 1, 0.3, 1),
-    opacity 0.32s ease,
-    background 0.3s ease,
-    box-shadow 0.3s ease;
+  z-index: 950;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.25s ease;
 }
 
-/* Elastic Sliding Pill Indicator (.nav-slider) */
 .ios-bottom-dock .nav-slider {
   position: absolute;
   top: 5px;
   bottom: 5px;
   left: 0;
   width: 110px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   background: var(--nav-slider-bg);
   box-shadow: var(--nav-slider-shadow);
-  transition:
-    transform 0.45s cubic-bezier(0.25, 1, 0.3, 1),
-    width 0.45s cubic-bezier(0.25, 1, 0.3, 1);
+  transition: transform 0.42s cubic-bezier(0.25, 1, 0.3, 1), width 0.42s cubic-bezier(0.25, 1, 0.3, 1);
   pointer-events: none;
   z-index: 0;
   will-change: transform, width;
@@ -1740,22 +1125,17 @@ body {
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 6px 0;
   border: none;
-  background: transparent !important;
-  box-shadow: none !important;
-  border-radius: 9999px;
+  background: transparent;
+  border-radius: var(--radius-full);
   color: var(--text-muted);
   font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition:
-    color 0.25s ease,
-    transform 0.18s cubic-bezier(0.25, 1, 0.3, 1);
+  transition: color 0.2s ease, transform 0.16s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
-/* Tactile Micro-interaction on Tab Press */
 .ios-bottom-dock .dock-item:active {
   transform: scale(0.92);
 }
@@ -1765,748 +1145,37 @@ body {
   font-weight: 700;
 }
 
-.ios-bottom-dock .dock-item .dock-icon {
+.ios-bottom-dock .dock-icon {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  line-height: 1;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
 .ios-bottom-dock .dock-item.active .dock-icon {
-  transform: translateY(-1px) scale(1.08);
+  transform: translateY(-1px) scale(1.06);
 }
 
-/* --- Module 5: Auto Full-Screen / Hide Navigation in Active Study Mode --- */
+/* --- Auto Full-Screen Study Session --- */
 body.in-study-session .ios-bottom-dock {
-  transform: translate(-50%, calc(100% + 48px + env(safe-area-inset-bottom))) !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+  transform: translate3d(-50%, calc(100% + 48px + env(safe-area-inset-bottom)), 0);
+  opacity: 0;
+  pointer-events: none;
 }
 
 body.in-study-session .topbar {
-  display: none !important;
-}
-
-body.in-study-session .content-container {
-  padding-top: 20px;
-  padding-bottom: calc(32px + env(safe-area-inset-bottom));
-}
-
-/* --- Library Converged Sub-Navigation & Phrase Cards List --- */
-.library-hub-subnav {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  overflow-x: auto;
-  padding: 6px;
-  margin-bottom: 16px;
-  background: var(--bg-card);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid var(--border-glass);
-  border-radius: 16px;
-  box-shadow: var(--shadow-sm);
-  scrollbar-width: none;
-}
-.library-hub-subnav::-webkit-scrollbar {
   display: none;
 }
 
-.lib-subnav-btn {
-  flex: 1 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 8px 14px;
-  border-radius: 12px;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.22s cubic-bezier(0.25, 1, 0.3, 1);
-  white-space: nowrap;
-}
-
-.lib-subnav-btn:active {
-  transform: scale(0.95);
-}
-
-.lib-subnav-btn.active {
-  background: var(--primary);
-  color: #FFFFFF;
-  box-shadow: 0 3px 10px rgba(74, 111, 165, 0.25);
-}
-
-/* Phrase Card List inside Library Tab */
-.lib-phrase-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-.lib-phrase-card {
-  background: var(--bg-card);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow-md);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: transform 0.22s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.22s ease;
-}
-
-.lib-phrase-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-.lib-card-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.lib-card-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--text-main);
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-}
-
-.lib-card-meaning {
-  font-size: 16.5px;
-  font-weight: 600;
-  color: var(--success);
-  line-height: 1.4;
-}
-
-.lib-card-example {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  background: var(--bg-subtle);
-  padding: 10px 12px;
-  border-radius: 12px;
-  border-left: 3px solid var(--primary);
-}
-
-.lib-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border-color);
-}
-
-
-/* --- Minimalist First-Screen Home Layout (Tab 1: Study/Home) --- */
-.bubei-home-shell {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.bubei-quote-banner {
-  padding: 12px 16px !important;
-  border-radius: 16px !important;
-}
-
-.bubei-quote-en {
-  font-size: 13.5px !important;
-  line-height: 1.4 !important;
-}
-
-.bubei-quote-zh {
-  font-size: 11.5px !important;
-  margin-top: 2px !important;
-}
-
-.bubei-dual-hero {
-  gap: 12px !important;
-}
-
-.bubei-hero-capsule {
-  min-height: 120px !important;
-  padding: 16px 18px !important;
-  border-radius: 18px !important;
-}
-
-.bubei-capsule-num {
-  font-size: 36px !important;
-  margin: 4px 0 !important;
-}
-
-.bubei-session-pod {
-  padding: 16px 18px !important;
-  border-radius: 18px !important;
-}
-
-#btnStartDailyMain {
-  font-size: 15px;
-  font-weight: 700;
-  padding: 11px 22px;
-  box-shadow: 0 6px 20px rgba(74, 111, 165, 0.30);
-}
-
-
-/* Ensure minimalist first screen on mobile viewports */
-.reminder-banner {
-  display: none !important;
-}
-
-.topbar {
-  margin: 8px 12px 0 !important;
-  padding: 8px 14px !important;
-}
-
-.content-container {
-  padding: 10px 12px calc(104px + env(safe-area-inset-bottom)) !important;
-}
-
-.bubei-home-shell {
-  gap: 10px !important;
-}
-
-.bubei-quote-banner {
-  padding: 10px 14px !important;
-}
-
-.bubei-hero-capsule {
-  min-height: 96px !important;
-  padding: 12px 14px !important;
-}
-
-.bubei-capsule-num {
-  font-size: 30px !important;
-  margin: 2px 0 !important;
-}
-
-.bubei-session-pod {
-  padding: 14px 16px !important;
-}
-
-
-/* ==========================================================================
-   PHRASEMASTER V6.0 — "不背单词" ULTRA-MINIMALIST & SINGLE-ACCENT iOS DESIGN
-   1. Font Stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui
-   2. Strict Typographic Hierarchy:
-      - Phrase: 26px (24-28px) Bold
-      - Meaning: 17px (16-18px)
-      - Example & Auxiliary: 14.5px (14-15px), reduced opacity (0.76)
-      - Secondary Stat Text: reduced opacity (0.58)
-   3. Single iOS Blue Accent (#007AFF / Dark #0A84FF) — No Multi-Colored Status Badges
-   4. Atmospheric Semi-Transparent Backdrop (opacity 0.08 - 0.15, auto-dimmed in dark mode)
-   5. Collapsible Home Details Drawer & Distraction-Free Fullscreen Study Mode
-   ========================================================================== */
-
-:root {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, "PingFang SC", sans-serif;
-  --primary: #007AFF;
-  --primary-hover: #0062CC;
-  --primary-soft: rgba(0, 122, 255, 0.10);
-  --success: #007AFF;
-  --success-soft: rgba(0, 122, 255, 0.08);
-  --warning: #007AFF;
-  --warning-soft: rgba(0, 122, 255, 0.08);
-  --purple: #007AFF;
-  --purple-soft: rgba(0, 122, 255, 0.08);
-  --danger: #D9534F;
-  --danger-soft: rgba(217, 83, 79, 0.08);
-
-  --bg-body: #F5F7FA;
-  --bg-card: rgba(255, 255, 255, 0.82);
-  --bg-card-solid: #FFFFFF;
-  --bg-subtle: rgba(15, 23, 42, 0.035);
-  --bg-hover: rgba(15, 23, 42, 0.06);
-  --text-main: #111827;
-  --text-secondary: rgba(17, 24, 39, 0.68);
-  --text-muted: rgba(17, 24, 39, 0.46);
-  --border-color: rgba(15, 23, 42, 0.06);
-  --border-glass: rgba(255, 255, 255, 0.78);
-
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
-
-  /* Lightweight dual-layer soft shadows */
-  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.025), 0 4px 12px rgba(15, 23, 42, 0.02);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.035), 0 12px 28px -4px rgba(15, 23, 42, 0.045);
-  --shadow-lg: 0 6px 16px rgba(15, 23, 42, 0.04), 0 18px 36px -6px rgba(15, 23, 42, 0.06);
-  --liquid-specular:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.85),
-    0 4px 12px rgba(15, 23, 42, 0.035),
-    0 12px 28px -4px rgba(15, 23, 42, 0.045);
-
-  --dock-surface: rgba(255, 255, 255, 0.74);
-  --dock-border: rgba(255, 255, 255, 0.82);
-  --dock-shadow:
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.9),
-    0 4px 14px rgba(15, 23, 42, 0.05),
-    0 14px 32px -4px rgba(15, 23, 42, 0.09);
-  --nav-slider-bg: rgba(0, 122, 255, 0.12);
-  --nav-slider-shadow: inset 0 1px 0.5px rgba(255, 255, 255, 0.7);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --primary: #0A84FF;
-    --primary-hover: #409CFF;
-    --primary-soft: rgba(10, 132, 255, 0.16);
-    --success: #0A84FF;
-    --warning: #0A84FF;
-    --purple: #0A84FF;
-
-    --bg-body: #090D14;
-    --bg-card: rgba(22, 29, 41, 0.78);
-    --bg-card-solid: #141B26;
-    --bg-subtle: rgba(255, 255, 255, 0.045);
-    --bg-hover: rgba(255, 255, 255, 0.08);
-    --text-main: #F3F4F6;
-    --text-secondary: rgba(243, 244, 246, 0.68);
-    --text-muted: rgba(243, 244, 246, 0.44);
-    --border-color: rgba(255, 255, 255, 0.07);
-    --border-glass: rgba(255, 255, 255, 0.12);
-
-    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.20), 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.24), 0 12px 28px -4px rgba(0, 0, 0, 0.32);
-    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.28), 0 20px 40px -6px rgba(0, 0, 0, 0.38);
-    --liquid-specular:
-      inset 0 1px 0.5px rgba(255, 255, 255, 0.12),
-      0 4px 14px rgba(0, 0, 0, 0.24),
-      0 12px 28px -4px rgba(0, 0, 0, 0.32);
-
-    --dock-surface: rgba(18, 24, 36, 0.76);
-    --dock-border: rgba(255, 255, 255, 0.14);
-    --dock-shadow:
-      inset 0 1px 0.5px rgba(255, 255, 255, 0.14),
-      0 6px 18px rgba(0, 0, 0, 0.32),
-      0 16px 36px -4px rgba(0, 0, 0, 0.45);
-    --nav-slider-bg: rgba(10, 132, 255, 0.22);
-    --nav-slider-shadow: inset 0 1px 0.5px rgba(255, 255, 255, 0.16);
-  }
-}
-
-[data-theme="dark"] {
-  --primary: #0A84FF;
-  --primary-hover: #409CFF;
-  --primary-soft: rgba(10, 132, 255, 0.16);
-  --success: #0A84FF;
-  --warning: #0A84FF;
-  --purple: #0A84FF;
-
-  --bg-body: #090D14;
-  --bg-card: rgba(22, 29, 41, 0.78);
-  --bg-card-solid: #141B26;
-  --bg-subtle: rgba(255, 255, 255, 0.045);
-  --bg-hover: rgba(255, 255, 255, 0.08);
-  --text-main: #F3F4F6;
-  --text-secondary: rgba(243, 244, 246, 0.68);
-  --text-muted: rgba(243, 244, 246, 0.44);
-  --border-color: rgba(255, 255, 255, 0.07);
-  --border-glass: rgba(255, 255, 255, 0.12);
-
-  --dock-surface: rgba(18, 24, 36, 0.76);
-  --dock-border: rgba(255, 255, 255, 0.14);
-  --nav-slider-bg: rgba(10, 132, 255, 0.22);
-}
-
-/* Atmospheric Low-Saturation Background Layer (Opacity 0.08 - 0.15, auto-dimmed in Dark Mode) */
-.scenic-wallpaper-layer {
-  opacity: 0.13 !important;
-  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.3, 1);
-}
-
-[data-theme="dark"] .scenic-wallpaper-layer {
-  opacity: 0.08 !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .scenic-wallpaper-layer {
-    opacity: 0.08 !important;
-  }
-}
-
-/* Eliminate Multi-Colored Badges — Use Neutral Subtle & Single iOS Blue Accent Only */
-.badge,
-.badge-new,
-.badge-learning,
-.badge-review,
-.badge-mastered,
-.badge-paused,
-.badge-purple {
-  background: var(--bg-subtle) !important;
-  color: var(--text-secondary) !important;
-  border: 1px solid var(--border-color);
-  font-weight: 500;
-  font-size: 11.5px;
-  padding: 2px 9px;
-}
-
-/* Progress fill uses clean single iOS blue */
-.progress-fill {
-  background: var(--primary) !important;
-}
-
-.btn-primary {
-  background: var(--primary) !important;
-  color: #FFFFFF !important;
-  border: none !important;
-  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.22) !important;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: var(--primary-hover) !important;
-}
-
-/* Card Radius 18-20px & Generous Spacing */
-.card,
-.flashcard-box,
-.bubei-minimal-hero-card {
-  border-radius: 20px !important;
-  box-shadow: var(--shadow-md) !important;
-  border: 1px solid var(--border-glass) !important;
-  background: var(--bg-card) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  backdrop-filter: blur(25px) saturate(180%);
-}
-
-/* --- Tab 1: Minimalist Home Hero Card --- */
-.bubei-home-shell {
-  max-width: 640px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px !important;
-  padding-top: 8px;
-}
-
-.bubei-minimal-hero-card {
-  padding: 18px 20px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.bubei-minimal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12.5px;
-  color: var(--text-muted);
-}
-
-.bubei-status-caption {
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--text-muted);
-}
-
-.bubei-dual-hero {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px !important;
-}
-
-.bubei-hero-capsule {
-  min-height: 92px !important;
-  padding: 14px 16px !important;
-  border-radius: 18px !important;
-  background: var(--bg-subtle) !important;
-  border: 1px solid var(--border-color) !important;
-  box-shadow: none !important;
-  transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1), background 0.25s ease;
-}
-
-.bubei-hero-capsule::before {
-  display: none !important;
-}
-
-.bubei-hero-capsule:hover {
-  transform: translateY(-2px);
-  background: var(--bg-hover) !important;
-  border-color: var(--border-color) !important;
-}
-
-.bubei-hero-capsule:active {
-  transform: scale(0.97);
-}
-
-.bubei-capsule-en-label {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-}
-
-.bubei-capsule-en-label span {
-  font-size: 12px;
-  font-weight: 400;
-  opacity: 0.75;
-}
-
-.bubei-capsule-num,
-.bubei-capsule-learn .bubei-capsule-num,
-.bubei-capsule-review .bubei-capsule-num {
-  font-size: 38px !important;
-  font-weight: 700 !important;
-  color: var(--text-main) !important;
-  letter-spacing: -1px;
-  margin: 6px 0 4px !important;
-}
-
-.bubei-capsule-footer {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-.bubei-task-summary-box {
-  text-align: center;
-  padding: 4px 6px;
-}
-
-.bubei-task-headline {
-  font-size: 16.5px;
-  font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: 4px;
-}
-
-.bubei-task-subtext {
-  font-size: 13px;
-  color: var(--text-secondary);
-  opacity: 0.78;
-  margin-bottom: 14px;
-}
-
-.bubei-mini-progress-wrap {
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-.bubei-mini-progress-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-}
-
-.bubei-primary-cta-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 2px;
-}
-
-.bubei-main-start-btn {
-  width: 100%;
-  max-width: 340px;
-  padding: 14px 28px !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  border-radius: 9999px !important;
-  letter-spacing: 0.2px;
-  transition: transform 0.2s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.2s ease !important;
-}
-
-.bubei-main-start-btn:active {
-  transform: scale(0.95) !important;
-}
-
-/* Demoted Low-Weight Secondary Small Buttons Below Main Button */
-.bubei-secondary-cta-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-top: -4px;
-}
-
-.btn-minimal-sub {
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  opacity: 0.72;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: opacity 0.2s ease, background 0.2s ease, transform 0.15s cubic-bezier(0.25, 1, 0.3, 1);
-}
-
-.btn-minimal-sub:hover {
-  opacity: 1;
-  background: var(--bg-subtle);
-  color: var(--primary);
-}
-
-.btn-minimal-sub:active {
-  transform: scale(0.94);
-}
-
-.bubei-sub-divider {
-  color: var(--text-muted);
-  opacity: 0.45;
-  font-size: 12px;
-}
-
-/* --- Collapsible Details Drawer on Home Page (Default Collapsed) --- */
-.home-details-drawer {
-  background: var(--bg-card);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.3, 1);
-}
-
-.home-details-summary {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  user-select: none;
-  transition: color 0.2s ease, background 0.2s ease;
-}
-
-.home-details-summary::-webkit-details-marker {
+/* --- Clean Hidden Compatibility Elements --- */
+.study-gesture-guide,
+.flashcard-prompt-type,
+.bubei-capsule-footer,
+.bubei-minimal-header,
+#dashHeroHeadline,
+#dashHeroSubtext,
+#wallpaperNameBadge,
+.poetic-greeting-sub {
   display: none;
 }
-
-.home-details-summary:hover {
-  color: var(--text-main);
-  background: var(--bg-subtle);
-}
-
-.drawer-chevron {
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.3, 1);
-  opacity: 0.65;
-}
-
-.home-details-drawer[open] .drawer-chevron {
-  transform: rotate(180deg);
-}
-
-.home-details-content {
-  padding: 6px 18px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  border-top: 1px solid var(--border-color);
-  animation: drawerSlideDown 0.28s cubic-bezier(0.25, 1, 0.3, 1);
-}
-
-@keyframes drawerSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Secondary stat labels reduced opacity */
-.bubei-mini-label,
-.bubei-mini-sub,
-.stat-label,
-.stat-sub,
-.state-label-text {
-  color: var(--text-secondary);
-  opacity: 0.65;
-  font-size: 12px;
-}
-
-/* --- Strict Typography Hierarchy in Study & Library Cards --- */
-/* 1. Phrase: 24-28px Bold */
-.flashcard-main-phrase {
-  font-size: calc(26px * var(--card-font-scale, 1)) !important;
-  font-weight: 700 !important;
-  color: var(--text-main) !important;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-}
-
-/* 2. Meaning: 16-18px */
-.meaning-title,
-.lib-card-meaning {
-  font-size: calc(17px * var(--card-font-scale, 1)) !important;
-  font-weight: 600 !important;
-  color: var(--text-main) !important;
-  line-height: 1.45;
-}
-
-/* 3. Example & Auxiliary Text: 14-15px with reduced opacity */
-.example-box,
-.lib-card-example {
-  background: var(--bg-subtle) !important;
-  border-left: 2.5px solid var(--primary) !important;
-  border-radius: 12px !important;
-  padding: 12px 16px !important;
-}
-
-.example-en {
-  font-size: 14.5px !important;
-  line-height: 1.6 !important;
-  color: var(--text-main) !important;
-  opacity: 0.86;
-}
-
-.example-zh,
-.flashcard-hint {
-  font-size: 14px !important;
-  line-height: 1.55 !important;
-  color: var(--text-secondary) !important;
-  opacity: 0.72;
-  font-style: normal !important;
-}
-
-/* Distraction-Free Immersive Fullscreen Study View (#view-study) */
-#studyCardCategoryBadge,
-#studyCardDifficultyBadge,
-#studyCardStateBadge,
-#studySessionTypeBadge,
-#studyAnswerTags {
-  display: none !important;
-}
-
-.rating-btn.rate-0,
-.rating-btn.rate-1,
-.rating-btn.rate-2,
-.rating-btn.rate-3 {
-  border-bottom: 1px solid var(--border-glass) !important;
-}
-
-.rating-btn:hover {
-  border-color: var(--primary) !important;
-}
-
 </style>
 </head>
 <body>
@@ -2538,89 +1207,34 @@ body.in-study-session .content-container {
 
 
 <div class="app-layout">
-  <!-- Sidebar Navigation -->
-  <aside class="sidebar">
-    <div class="brand-header">
-      <div class="brand-logo">PM</div>
-      <div>
-        <div class="brand-title">PhraseMaster</div>
-        <div class="brand-subtitle">iOS 间隔重复记忆系统</div>
-      </div>
-    </div>
-
-    <nav class="nav-menu" aria-label="主导航">
-      <div class="nav-section-title">核心功能</div>
-      <button type="button" class="nav-item active" data-nav="dashboard" id="navBtnDashboard">
-        <span class="nav-item-left"><span>🏠</span><span>学习首页</span></span>
-        <span class="nav-badge" id="navBadgeDue">0</span>
-      </button>
-      <button type="button" class="nav-item" data-nav="study" id="navBtnStudy">
-        <span class="nav-item-left"><span>🎯</span><span>今日学习</span></span>
-        <span class="nav-badge" id="navBadgeSession">就绪</span>
-      </button>
-      <button type="button" class="nav-item" data-nav="cards" id="navBtnCards">
-        <span class="nav-item-left"><span>🗂️</span><span>词组卡片</span></span>
-      </button>
-      <button type="button" class="nav-item" data-nav="library" id="navBtnLibrary">
-        <span class="nav-item-left"><span>📚</span><span>词组库管理</span></span>
-        <span class="nav-badge" id="navBadgeTotal">0</span>
-      </button>
-      <button type="button" class="nav-item" data-nav="settings" id="navBtnSettings">
-        <span class="nav-item-left"><span>⚙️</span><span>系统设置</span></span>
-      </button>
-
-      <div class="nav-section-title">专练与工具</div>
-      <button type="button" class="nav-item" data-nav="editor" id="navBtnEditor">
-        <span class="nav-item-left"><span>✏️</span><span>添加与编辑</span></span>
-      </button>
-      <button type="button" class="nav-item" data-nav="mistakes" id="navBtnMistakes">
-        <span class="nav-item-left"><span>⚠️</span><span>错题本</span></span>
-        <span class="nav-badge" id="navBadgeMistakes">0</span>
-      </button>
-      <button type="button" class="nav-item" data-nav="favorites" id="navBtnFavorites">
-        <span class="nav-item-left"><span>⭐</span><span>收藏夹</span></span>
-        <span class="nav-badge" id="navBadgeFavorites">0</span>
-      </button>
-      <button type="button" class="nav-item" data-nav="stats" id="navBtnStats">
-        <span class="nav-item-left"><span>📊</span><span>学习统计</span></span>
-      </button>
-      <button type="button" class="nav-item" data-nav="importExport" id="navBtnImportExport">
-        <span class="nav-item-left"><span>🔄</span><span>导入与导出</span></span>
-      </button>
-    </nav>
-
-    <div class="sidebar-footer">
-      <div class="storage-indicator">
-        <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:currentColor;"></span>
-        <span>iOS 本地 IndexedDB / 离线就绪</span>
-      </div>
-      <div>PhraseMaster v4.2 · iOS 液态玻璃 · 不背美学</div>
-    </div>
-  </aside>
+  <!-- Sidebar removed in v10.0 consolidation (3-Tab Bottom Dock Architecture) -->
 
   <!-- Main Workspace -->
   <div class="main-wrapper">
     <!-- Top Header -->
     <header class="topbar">
       <div class="topbar-left">
-        <h1 class="page-heading" id="currentPageTitle">学习首页与今日概览</h1>
-        <span class="badge badge-learning" id="todayDateBadge">2026-10-27</span>
-        <span class="badge badge-purple" id="wallpaperNameBadge" style="cursor:pointer;" title="点击随机切换壁纸">晨曦极光</span>
+        <div style="display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;">
+          <h1 class="page-heading" id="currentPageTitle" style="font-size:20px; font-weight:800; letter-spacing:-0.03em;">PhraseMaster</h1>
+          <span class="poetic-greeting-sub" id="poeticTimeGreeting">保持专注 · 语境习得</span>
+        </div>
+        <span class="badge badge-learning" id="todayDateBadge" style="display:none;">2026-10-27</span>
+        <span class="badge badge-purple" id="wallpaperNameBadge" style="cursor:pointer;" title="点击切换氛围背景">晨曦极光</span>
       </div>
-      <div class="topbar-right">
-        <button type="button" class="btn btn-sm btn-secondary" id="btnRandomWallpaper" title="随机切换离线壁纸">切换背景</button>
-        <button type="button" class="btn btn-sm btn-secondary" id="topbarDarkModeBtn" title="切换暗色/浅色模式">深浅外观</button>
-        <button type="button" class="btn btn-sm btn-secondary" id="quickAddPhraseBtn" style="display:none;">+ 新增词组</button>
-        <button type="button" class="btn btn-sm btn-secondary" id="quickBackupBtn" style="display:none;">导出备份</button>
-        <button type="button" class="btn btn-sm btn-primary" id="quickStartStudyBtn" style="display:none;">开始今日学习</button>
+      <div class="topbar-right" style="display:flex; align-items:center; gap:8px;">
+        <button type="button" class="btn-icon" id="btnRandomWallpaper" title="切换背景" aria-label="切换背景">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+        </button>
+        <button type="button" class="btn-icon" id="topbarDarkModeBtn" title="深浅外观" aria-label="深浅外观">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button type="button" class="btn btn-sm btn-secondary" id="quickAddPhraseBtn" style="display:none;">+ 新增</button>
+        <button type="button" class="btn btn-sm btn-secondary" id="quickBackupBtn" style="display:none;">备份</button>
+        <button type="button" class="btn btn-sm btn-primary" id="quickStartStudyBtn" style="display:none;">开始</button>
       </div>
     </header>
 
-    <!-- Local Daily Study Reminder Banner -->
-    <div class="reminder-banner" id="dailyReminderBanner" style="display:none;">
-      <span id="dailyReminderText">⏰ 今日学习提醒：您今天还有待完成的词组复习任务，建议花 10～15 分钟完成巩固！</span>
-      <button type="button" class="btn btn-sm btn-secondary" id="dismissReminderBtn">知道了</button>
-    </div>
+    <!-- Daily reminder banner deleted per user request -->
 
     <!-- Content Views -->
     <main class="content-container">
@@ -2629,13 +1243,7 @@ body.in-study-session .content-container {
       <section class="view-section active" id="view-dashboard">
         <div class="bubei-home-shell">
 
-          <!-- (Hidden compatibility nodes for daily quote so existing JS listeners remain intact) -->
-          <div id="bubeiDailyQuoteBox" style="display:none;">
-            <span id="bubeiQuoteEn"></span>
-            <span id="bubeiQuoteZh"></span>
-            <button type="button" id="bubeiQuoteSpeakBtn"></button>
-            <button type="button" id="bubeiQuoteNextBtn"></button>
-          </div>
+          
 
           <!-- First Screen Core Hero: 1. Brief Today's Task Summary + 2. Primary Action Button + 3. Demoted Secondary Buttons -->
           <div class="bubei-minimal-hero-card">
@@ -2646,21 +1254,21 @@ body.in-study-session .content-container {
 
             <!-- Dual Minimalist Numbers: Learn | Review -->
             <div class="bubei-dual-hero">
-              <div class="bubei-hero-capsule bubei-capsule-learn" id="bubeiLearnCard" role="button" tabindex="0" title="点击开始新词组学习">
-                <div class="bubei-capsule-en-label">Learn <span>新学</span></div>
+              <div class="bubei-hero-capsule bubei-capsule-learn" id="bubeiLearnCard" role="button" tabindex="0" title="学习新词组">
+                <div class="bubei-capsule-en-label">新学</div>
                 <div class="bubei-capsule-num" id="metricNewToday">0</div>
-                <div class="bubei-capsule-footer">
-                  <span id="metricNewSub">今日已新学 0 / 目标 10 个</span>
+                <div class="bubei-capsule-footer" style="display:none;">
+                  <span id="metricNewSub">0 / 10</span>
                 </div>
               </div>
 
-              <div class="bubei-hero-capsule bubei-capsule-review" id="bubeiReviewCard" role="button" tabindex="0" title="点击开始到期词组复习">
+              <div class="bubei-hero-capsule bubei-capsule-review" id="bubeiReviewCard" role="button" tabindex="0" title="复习到期词组">
                 <div class="bubei-capsule-header">
-                  <span class="bubei-capsule-en-label">Review <span>复习</span></span>
+                  <span class="bubei-capsule-en-label">复习</span>
                 </div>
                 <div class="bubei-capsule-num" id="metricDueToday">0</div>
-                <div class="bubei-capsule-footer">
-                  <span id="metricDueSub">每日复习上限：15 个</span>
+                <div class="bubei-capsule-footer" style="display:none;">
+                  <span id="metricDueSub">上限 15</span>
                 </div>
               </div>
             </div>
@@ -2680,16 +1288,16 @@ body.in-study-session .content-container {
               </div>
             </div>
 
-            <!-- Primary CTA Button (Single High-Weight Entry) -->
+            <!-- Primary CTA Button -->
             <div class="bubei-primary-cta-wrap">
-              <button type="button" class="btn btn-primary btn-lg bubei-main-start-btn" id="btnStartDailyMain">🚀 开始今日学习</button>
+              <button type="button" class="btn btn-primary btn-lg bubei-main-start-btn" id="btnStartDailyMain">开始学习</button>
             </div>
 
-            <!-- Demoted Low-Weight Secondary Small Buttons Below Main Button -->
-            <div class="bubei-secondary-cta-row">
-              <button type="button" class="btn-minimal-sub" id="btnStartReviewOnly">只复习到期</button>
+            <!-- Secondary Actions -->
+            <div class="bubei-secondary-cta-row" style="margin-top:10px;">
+              <button type="button" class="btn-minimal-sub" id="btnStartReviewOnly">复习</button>
               <span class="bubei-sub-divider">·</span>
-              <button type="button" class="btn-minimal-sub" id="btnStartNewOnly">仅学新词组</button>
+              <button type="button" class="btn-minimal-sub" id="btnStartNewOnly">新学</button>
             </div>
 
             <!-- Optional No-Due Notice (Subtle) -->
@@ -2702,7 +1310,7 @@ body.in-study-session .content-container {
           <!-- Collapsible Details Drawer (Default Collapsed — Only Expands on User Click) -->
           <details class="home-details-drawer" id="homeDetailsDrawer">
             <summary class="home-details-summary" id="homeDetailsSummaryBtn">
-              <span>展开详情（学习统计、记忆状态分布与模式切换）</span>
+              <span>数据统计</span>
               <svg class="drawer-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
 
@@ -2792,8 +1400,11 @@ body.in-study-session .content-container {
                 </select>
               </div>
               <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-size:13px; font-weight:700; color:var(--primary);" id="studyCounterText">1 / 10</span>
-                <button type="button" class="btn btn-sm btn-secondary" id="studyPauseExitBtn">保存进度并退出</button>
+                <span style="font-size:13.5px; font-weight:700; color:var(--primary);" id="studyCounterText">1 / 10</span>
+                <button type="button" class="btn-icon" id="studyUndoBtn" title="撤销上一题评分 (Z)" aria-label="撤销上一题评分" style="display:none; width:32px; height:32px; min-width:32px; font-size:14px;">↩</button>
+                <button type="button" class="btn-icon" id="studyPauseExitBtn" title="保存并退出" aria-label="保存并退出">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
               </div>
             </div>
             <div class="progress-track" style="height:6px;">
@@ -2803,6 +1414,7 @@ body.in-study-session .content-container {
 
           <!-- Active Flashcard Box -->
           <div class="flashcard-box" id="studyFlashcardContainer">
+            <div class="study-swipe-badge" id="studySwipeHintPill" aria-hidden="true">释放完成操作</div>
             <div>
               <!-- Card Meta Header -->
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
@@ -2811,9 +1423,9 @@ body.in-study-session .content-container {
                   <span class="badge badge-learning" id="studyCardDifficultyBadge">中级</span>
                   <span class="badge badge-review" id="studyCardStateBadge">首次学习</span>
                 </div>
-                <div style="display:flex; gap:6px;">
-                  <button type="button" class="btn btn-sm btn-secondary" id="studyToggleFavBtn" title="加入或移出收藏夹">☆ 收藏</button>
-                  <button type="button" class="btn btn-sm btn-secondary" id="studyPausePhraseBtn" title="暂停该词组的后续复习安排">⏸ 暂停复习</button>
+                <div style="display:flex; gap:8px;">
+                  <button type="button" class="btn-card-icon" id="studyToggleFavBtn" title="收藏" style="font-size:14px;">☆</button>
+                  <button type="button" class="btn-card-icon" id="studyPausePhraseBtn" title="暂停" style="font-size:11px;">⏸</button>
                 </div>
               </div>
 
@@ -2821,7 +1433,7 @@ body.in-study-session .content-container {
               <div class="flashcard-prompt-type" id="studyPromptTypeLabel">请回忆以下英语词组的中文释义与用法：</div>
               <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap;">
                 <div class="flashcard-main-phrase" id="studyPromptMainText" style="margin-bottom:0;">take into account</div>
-                <button type="button" class="btn btn-sm btn-secondary" id="studySpeakPromptBtn" title="播放英语词组发音 (快捷键 R)" style="border-radius:999px; padding:4px 10px; font-size:13px; display:inline-flex;">朗读</button>
+                <button type="button" class="btn-icon" id="studySpeakPromptBtn" title="发音" aria-label="发音" style="width:32px; height:32px; min-width:32px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
               </div>
 
               <!-- Optional Context Hint -->
@@ -2853,7 +1465,7 @@ body.in-study-session .content-container {
                 <div class="example-box" id="studyExampleContainer">
                   <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:6px;">
                     <div class="example-en" id="studyAnswerExampleEn" style="margin-bottom:0;">When evaluating the economic policy, researchers must take into account long-term environmental costs.</div>
-                    <button type="button" class="btn btn-sm btn-secondary" id="studySpeakExampleBtn" title="朗读完整英文例句" style="border-radius:999px; padding:3px 9px; font-size:12px; flex-shrink:0;">朗读例句</button>
+                    <button type="button" class="btn-card-icon" id="studySpeakExampleBtn" title="朗读例句" aria-label="朗读例句"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
                   </div>
                   <div class="example-zh" id="studyAnswerExampleZh">在评估这项经济政策时，研究人员必须把长期的环境成本考虑在内。</div>
                 </div>
@@ -2869,30 +1481,28 @@ body.in-study-session .content-container {
             <div style="margin-top:24px;">
               <!-- Show Answer Button -->
               <div id="studyShowAnswerBar" style="text-align:center;">
-                <button type="button" class="btn btn-primary btn-lg" style="width:100%; max-width:360px;" id="studyShowAnswerBtn">显示答案 <span class="kbd-tag" style="margin-left:6px; background:rgba(255,255,255,0.2); color:#fff; border:none;">Space</span></button>
+                <button type="button" class="btn btn-primary btn-lg" style="width:100%; max-width:320px; border-radius:9999px; height:50px; font-weight:700;" id="studyShowAnswerBtn">显示答案</button>
+                <div class="study-gesture-guide" id="studyGestureGuideText">轻触卡片或向上滑动显示答案 · 翻开后左右滑动快速评分</div>
               </div>
 
               <!-- 4 Familiarity Feedback Buttons -->
               <div id="studyRatingBar" style="display:none;">
-                <div style="font-size:12.5px; color:var(--text-secondary); text-align:center; margin-bottom:8px;">
-                  请根据刚才的主动回忆表现选择熟悉程度（支持数字键 <span class="kbd-tag">1</span> <span class="kbd-tag">2</span> <span class="kbd-tag">3</span> <span class="kbd-tag">4</span>）：
-                </div>
                 <div class="rating-grid">
-                  <button type="button" class="rating-btn rate-0" data-rate="0" id="rateBtn0">
-                    <span class="rating-title">1. 完全不认识</span>
-                    <span class="rating-desc" id="rateIntervalDesc0">记入错题 · 1天内重学</span>
+                  <button type="button" class="rating-btn rate-0" data-rate="0" id="rateBtn0" title="完全不认识 (1)">
+                    <span class="rating-title">不认识</span>
+                    <span class="rating-desc" id="rateIntervalDesc0">1</span>
                   </button>
-                  <button type="button" class="rating-btn rate-1" data-rate="1" id="rateBtn1">
-                    <span class="rating-title">2. 模糊有印象</span>
-                    <span class="rating-desc" id="rateIntervalDesc1">缩短间隔 · 1天后复习</span>
+                  <button type="button" class="rating-btn rate-1" data-rate="1" id="rateBtn1" title="模糊有印象 (2)">
+                    <span class="rating-title">模糊</span>
+                    <span class="rating-desc" id="rateIntervalDesc1">2</span>
                   </button>
-                  <button type="button" class="rating-btn rate-2" data-rate="2" id="rateBtn2">
-                    <span class="rating-title">3. 基本记住</span>
-                    <span class="rating-desc" id="rateIntervalDesc2">标准推进 · 3天后复习</span>
+                  <button type="button" class="rating-btn rate-2" data-rate="2" id="rateBtn2" title="基本记住 (3)">
+                    <span class="rating-title">记住</span>
+                    <span class="rating-desc" id="rateIntervalDesc2">3</span>
                   </button>
-                  <button type="button" class="rating-btn rate-3" data-rate="3" id="rateBtn3">
-                    <span class="rating-title">4. 非常熟悉</span>
-                    <span class="rating-desc" id="rateIntervalDesc3">延长间隔 · 5天后复习</span>
+                  <button type="button" class="rating-btn rate-3" data-rate="3" id="rateBtn3" title="非常熟悉 (4)">
+                    <span class="rating-title">熟练</span>
+                    <span class="rating-desc" id="rateIntervalDesc3">4</span>
                   </button>
                 </div>
 
@@ -3011,9 +1621,9 @@ body.in-study-session .content-container {
       <!-- 4. PHRASE LIBRARY MANAGEMENT VIEW -->
       <section class="view-section" id="view-library">
         <div class="card" style="margin-bottom:16px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+          <div class="lib-sticky-toolbar" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
             <div style="display:flex; gap:10px; flex-wrap:wrap; flex:1; min-width:260px;">
-              <input type="text" id="libSearchInput" class="form-control" style="max-width:280px;" placeholder="搜索英文词组、中文释义或标签...">
+              <input type="text" id="libSearchInput" class="form-control" style="max-width:280px;" placeholder="搜索...">
               <select id="libFilterCategory" class="form-select" style="width:auto;">
                 <option value="ALL">全部分类</option>
               </select>
@@ -3033,9 +1643,9 @@ body.in-study-session .content-container {
               </select>
             </div>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-primary" id="libAddPhraseBtn">+ 手动添加词组</button>
-              <button type="button" class="btn btn-secondary" id="libBatchTagBtn">批量标签</button>
-              <button type="button" class="btn btn-outline-danger" id="libBatchDeleteBtn">批量删除</button>
+              <button type="button" class="btn btn-primary" id="libAddPhraseBtn">+ 新增</button>
+              <button type="button" class="btn btn-secondary" id="libBatchTagBtn">标签</button>
+              <button type="button" class="btn btn-outline-danger" id="libBatchDeleteBtn">删除</button>
             </div>
           </div>
 
@@ -3076,7 +1686,7 @@ body.in-study-session .content-container {
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--border-color);">
             <div>
               <h2 style="font-size:18px; font-weight:700;" id="editorFormHeading">手动添加新词组</h2>
-              <p style="font-size:12.5px; color:var(--text-muted);">词组内容与学习进度独立存储，修改释义或例句不会清空已有的复习记录。</p>
+              
             </div>
             <button type="button" class="btn btn-sm btn-secondary" id="editorResetNewBtn">切换为新建模式</button>
           </div>
@@ -3342,9 +1952,7 @@ body.in-study-session .content-container {
           <!-- Batch Import Card -->
           <div class="card">
             <h2 style="font-size:18px; font-weight:700; margin-bottom:8px;">批量导入词组 (CSV / JSON)</h2>
-            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:14px;">
-              自动识别 UTF-8 与中文 GBK/GB18030 编码，导入前自动校验必填项、检测重复词组并提供完整预览，绝不破坏已有学习进度。
-            </p>
+            
 
             <div style="display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
               <button type="button" class="btn btn-sm btn-secondary" id="downloadCsvTemplateBtn">下载 CSV 模板</button>
@@ -3393,9 +2001,7 @@ body.in-study-session .content-container {
           <!-- Export & Full Backup Card -->
           <div class="card">
             <h2 style="font-size:18px; font-weight:700; margin-bottom:8px;">词库导出与数据备份恢复</h2>
-            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
-              支持仅导出纯词组列表（便于分享或在 Excel 中编辑），或导出包含全部复习进度、错题记录、历史统计和系统设置的完整镜像备份。
-            </p>
+            
 
             <div style="padding:14px; background:var(--bg-subtle); border-radius:var(--radius-md); margin-bottom:16px;">
               <h3 style="font-size:14.5px; font-weight:700; margin-bottom:6px;">1. 导出词组列表</h3>
@@ -3452,9 +2058,7 @@ body.in-study-session .content-container {
             </div>
             <label class="form-label" style="margin-bottom:8px;">壁纸色板预览与即时切换</label>
             <div class="wallpaper-swatch-grid" id="wallpaperSwatchGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(90px, 1fr)); gap:10px; margin-bottom:12px;"></div>
-            <p style="font-size:12px; color:var(--text-muted); line-height:1.4;">
-              ✨ 所有壁纸均基于原生低饱和莫兰迪色系与 Apple HIG 亚克力微模糊材质实时算法渲染，无任何网络依赖，秒开且省电。
-            </p>
+            
           </div>
           
           <div class="card">
@@ -3560,9 +2164,9 @@ body.in-study-session .content-container {
               </label>
             </div>
 
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+<div style="display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap; margin-top:20px;">
+              <button type="button" class="btn btn-secondary" id="resetDefaultSettingsBtn">恢复默认</button>
               <button type="button" class="btn btn-primary" id="saveSettingsBtn">保存设置</button>
-              <button type="button" class="btn btn-secondary" id="resetDefaultSettingsBtn">恢复默认设置</button>
             </div>
           </div>
 
@@ -3614,7 +2218,7 @@ body.in-study-session .content-container {
 </div>
 
 <!-- Phrase Detail & History Modal -->
-<div class="modal-backdrop" id="phraseDetailModal">
+<div class="modal-backdrop" id="phraseDetailModal" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
   <div class="modal-panel">
     <div class="modal-header">
       <div class="modal-title" id="detailModalTitle">词组详情与完整学习记录</div>
@@ -3928,12 +2532,14 @@ body.in-study-session .content-container {
   },
   {
     "id": "pm_user_016",
-    "phrase": "phycological arousal",
-    "acceptedAnswers": [],
-    "meaning": "生理唤醒（常作 physiological arousal 之拼写）",
+    "phrase": "physiological arousal",
+    "acceptedAnswers": [
+      "psychological arousal"
+    ],
+    "meaning": "生理唤醒（常与 psychological arousal 心理唤醒并列）",
     "example": "Public speaking typically triggers acute psychological and physiological arousal in novice speakers.",
     "example_translation": "公开演讲通常会引发新手演讲者强烈的心理与生理唤醒。",
-    "hint": "心理学与神经科学专业搭配",
+    "hint": "心理学与神经科学高频专业搭配",
     "pos": "名词短语 (n. phr.)",
     "category": "心理社科",
     "difficulty": "高级",
@@ -5080,19 +3686,22 @@ body.in-study-session .content-container {
   },
   {
     "id": "pm_user_080",
-    "phrase": "no wander",
-    "acceptedAnswers": [],
-    "meaning": "难怪，不足为奇（常为 no wonder 之拼写形式）",
+    "phrase": "no wonder",
+    "acceptedAnswers": [
+      "little wonder",
+      "small wonder"
+    ],
+    "meaning": "难怪，不足为奇",
     "example": "He studied fifteen hours every single day, so it is no wonder that he passed with distinction.",
     "example_translation": "他每天学习整整15个小时，难怪他能以优异的成绩通过考试。",
-    "hint": "no wonder (that)... 难怪，并不奇怪",
+    "hint": "(It is) no wonder that... 难怪，并不奇怪",
     "pos": "习惯句型",
     "category": "日常表达",
     "difficulty": "初级",
     "tags": [
       "因果感叹",
       "高频口语",
-      "熟词生义"
+      "核心句型"
     ],
     "notes": ""
   },
@@ -5678,18 +4287,60 @@ body.in-study-session .content-container {
     });
   }
 
-  function saveState() {
+  const APP_SCHEMA_VERSION = 2;
+  const MAX_HISTORY_PER_PHRASE = 30;
+  let idbSaveTimer = null;
+  let lastStudyStepSnapshot = null;
+  let lastSessionWrongIds = [];
+
+  function trimPhraseHistory(prog) {
+    if (prog && Array.isArray(prog.history) && prog.history.length > MAX_HISTORY_PER_PHRASE) {
+      prog.history = prog.history.slice(-MAX_HISTORY_PER_PHRASE);
+    }
+  }
+
+  function saveState(immediate = false) {
+    appData.version = APP_SCHEMA_VERSION;
+    appData.updatedAt = Date.now();
     try {
       localStorage.setItem(STORAGE_KEY_MAIN, JSON.stringify(appData));
     } catch (e) {
-      // Ignore storage quota or sandbox restrictions
+      // If localStorage hits 5MB quota, trim histories further and retry once
+      try {
+        Object.values(appData.progress || {}).forEach(p => {
+          if (p && Array.isArray(p.history) && p.history.length > 10) {
+            p.history = p.history.slice(-10);
+          }
+        });
+        localStorage.setItem(STORAGE_KEY_MAIN, JSON.stringify(appData));
+      } catch (e2) {}
     }
-    saveToIndexedDB(appData);
+    if (immediate) {
+      clearTimeout(idbSaveTimer);
+      idbSaveTimer = null;
+      saveToIndexedDB(appData);
+    } else {
+      clearTimeout(idbSaveTimer);
+      idbSaveTimer = setTimeout(() => {
+        idbSaveTimer = null;
+        saveToIndexedDB(appData);
+      }, 150);
+    }
   }
+
+  window.addEventListener('pagehide', () => {
+    if (idbSaveTimer) {
+      clearTimeout(idbSaveTimer);
+      idbSaveTimer = null;
+      saveToIndexedDB(appData);
+    }
+  });
 
   function seedInitialLibrary() {
     const nowIso = new Date().toISOString();
     const today = getLocalDateString();
+    appData.version = APP_SCHEMA_VERSION;
+    appData.updatedAt = Date.now();
     appData.phrases = {};
     appData.progress = {};
     INITIAL_PHRASES.forEach((item, idx) => {
@@ -5710,7 +4361,7 @@ body.in-study-session .content-container {
         updatedAt: nowIso
       };
       const prog = createDefaultProgress(item.id);
-      // Pre-configure 3 due phrases and 2 learning phrases so the user immediately sees realistic due & review queues on first launch
+      // Pre-configure 4 due phrases (idx 0..3) and 1 mastered phrase (idx 4)
       if (idx < 3) {
         prog.state = 'review';
         prog.familiarity = 2;
@@ -5750,7 +4401,7 @@ body.in-study-session .content-container {
           intervalAfter: 1
         });
       } else if (idx === 4) {
-        prog.state = 'Mastered' ? 'mastered' : 'mastered';
+        prog.state = 'mastered';
         prog.familiarity = 4;
         prog.interval = 10;
         prog.repetitions = 4;
@@ -5769,10 +4420,10 @@ body.in-study-session .content-container {
     appData.dailyStats = {};
     appData.dailyStats[yesterday] = {
       date: yesterday,
-      newLearnedIds: ['pm_001', 'pm_002', 'pm_003', 'pm_004', 'pm_005'],
-      reviewedIds: ['pm_001', 'pm_002', 'pm_003', 'pm_004'],
-      totalAttempts: 6,
-      correctAttempts: 5,
+      newLearnedIds: ['pm_user_001', 'pm_user_002', 'pm_user_003', 'pm_user_004', 'pm_user_005'],
+      reviewedIds: ['pm_user_001', 'pm_user_002', 'pm_user_003', 'pm_user_004'],
+      totalAttempts: 9,
+      correctAttempts: 8,
       wrongAttempts: 1,
       studySeconds: 420
     };
@@ -5787,34 +4438,78 @@ body.in-study-session .content-container {
       raw.settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
     } else {
       raw.settings = Object.assign({}, DEFAULT_SETTINGS, raw.settings);
-      raw.settings.masteryRules = Object.assign({}, DEFAULT_SETTINGS.masteryRules, raw.settings.masteryRules || {});
+      raw.settings.dailyNewLimit = Math.max(1, Number(raw.settings.dailyNewLimit) || DEFAULT_SETTINGS.dailyNewLimit);
+      raw.settings.dailyReviewLimit = Math.max(1, Number(raw.settings.dailyReviewLimit) || DEFAULT_SETTINGS.dailyReviewLimit);
+      const mr = Object.assign({}, DEFAULT_SETTINGS.masteryRules, raw.settings.masteryRules || {});
+      raw.settings.masteryRules = {
+        minReviews: Math.max(1, Number(mr.minReviews) || DEFAULT_SETTINGS.masteryRules.minReviews),
+        minInterval: Math.max(1, Number(mr.minInterval) || DEFAULT_SETTINGS.masteryRules.minInterval),
+        minAccuracy: Math.max(1, Math.min(100, Number(mr.minAccuracy) || DEFAULT_SETTINGS.masteryRules.minAccuracy))
+      };
     }
-    // Ensure every phrase has a progress record
+
+    // Schema v2 Migration: Auto-fix legacy typo phrases & cap unbounded history arrays
+    if (raw.phrases['pm_user_016'] && raw.phrases['pm_user_016'].phrase === 'phycological arousal') {
+      raw.phrases['pm_user_016'].phrase = 'physiological arousal';
+      raw.phrases['pm_user_016'].meaning = '生理唤醒（常与 psychological arousal 心理唤醒并列）';
+      if (!Array.isArray(raw.phrases['pm_user_016'].acceptedAnswers) || raw.phrases['pm_user_016'].acceptedAnswers.length === 0) {
+        raw.phrases['pm_user_016'].acceptedAnswers = ['psychological arousal'];
+      }
+    }
+    if (raw.phrases['pm_user_080'] && raw.phrases['pm_user_080'].phrase === 'no wander') {
+      raw.phrases['pm_user_080'].phrase = 'no wonder';
+      raw.phrases['pm_user_080'].meaning = '难怪，不足为奇';
+    }
+
     Object.keys(raw.phrases).forEach(id => {
       if (!raw.progress[id]) {
         raw.progress[id] = createDefaultProgress(id);
+      } else {
+        trimPhraseHistory(raw.progress[id]);
       }
     });
+
+    raw.version = APP_SCHEMA_VERSION;
+    if (typeof raw.updatedAt !== 'number') raw.updatedAt = Date.now();
     return true;
   }
 
   async function initStorage() {
-    let loaded = null;
+    let lsData = null;
+    let idbData = null;
     try {
       const lsRaw = localStorage.getItem(STORAGE_KEY_MAIN);
-      if (lsRaw) loaded = JSON.parse(lsRaw);
+      if (lsRaw) {
+        const parsed = JSON.parse(lsRaw);
+        if (validateAndRepairAppData(parsed)) lsData = parsed;
+      }
     } catch (e) {
-      loaded = null;
+      lsData = null;
     }
-    if (!loaded) {
+
+    try {
       const idbRaw = await loadFromIndexedDB();
-      if (idbRaw) loaded = idbRaw;
+      if (idbRaw && validateAndRepairAppData(idbRaw)) {
+        idbData = idbRaw;
+      }
+    } catch (e) {
+      idbData = null;
     }
-    if (loaded && validateAndRepairAppData(loaded)) {
-      appData = loaded;
+
+    // Reconcile dual persistence by picking the newest valid snapshot (prevents silent fallback to stale localStorage)
+    let chosen = null;
+    if (lsData && idbData) {
+      chosen = ((idbData.updatedAt || 0) > (lsData.updatedAt || 0)) ? idbData : lsData;
+    } else {
+      chosen = lsData || idbData;
+    }
+
+    if (chosen) {
+      appData = chosen;
+      saveState(true);
     } else {
       seedInitialLibrary();
-      saveState();
+      saveState(true);
     }
     recalculateAllStatesForToday();
     applyThemeAndTypography();
@@ -5882,20 +4577,21 @@ body.in-study-session .content-container {
   function previewNextIntervals(prog, isMistakeDrill) {
     if (isMistakeDrill) {
       return {
-        0: '错题强化 · 明日正式复习',
-        1: '错题强化 · 保持原计划',
-        2: '错题强化 · 巩固熟练度',
-        3: '错题强化 · 熟练度提升'
+        0: '1d · 重学',
+        1: '保持原计划',
+        2: '巩固熟练',
+        3: '熟练提升'
       };
     }
     const today = getLocalDateString();
     const alreadyReviewedToday = (prog.lastReviewedDate === today && prog.reviewCount > 0);
     if (alreadyReviewedToday) {
+      const keepDays = Math.max(1, prog.interval || 1);
       return {
-        0: '记入错题 · 1天后复习',
-        1: '缩短间隔 · 1天后复习',
-        2: `今日已计次 · 保持 ${Math.max(1, prog.interval)} 天`,
-        3: `今日已计次 · 保持 ${Math.max(1, prog.interval)} 天`
+        0: '1d',
+        1: '1d',
+        2: `${keepDays}d`,
+        3: `${keepDays}d`
       };
     }
     const curInterval = prog.interval || 0;
@@ -5903,10 +4599,10 @@ body.in-study-session .content-container {
     const int2 = curInterval === 0 ? 1 : (curInterval === 1 ? 3 : Math.max(2, Math.round(curInterval * ef)));
     const int3 = curInterval === 0 ? 3 : (curInterval === 1 ? 5 : Math.max(4, Math.round(curInterval * (ef + 0.15) * 1.25)));
     return {
-      0: '记入错题 · 1天后重学',
-      1: '缩短间隔 · 1天后复习',
-      2: `标准推进 · ${int2}天后复习`,
-      3: `延长间隔 · ${int3}天后复习`
+      0: '1d',
+      1: '1d',
+      2: `${int2}d`,
+      3: `${int3}d`
     };
   }
 
@@ -6030,8 +4726,10 @@ body.in-study-session .content-container {
       });
     }
 
-    // Update state based on Mastery rules
-    if (isPhraseDueToday(prog)) {
+    trimPhraseHistory(prog);
+
+    // Update state based on Mastery rules (nextReviewDate is in the future after formal review)
+    if (isMistakeDrill && isPhraseDueToday(prog)) {
       prog.state = 'review';
     } else if (isPhraseMastered(prog)) {
       prog.state = 'mastered';
@@ -6140,6 +4838,19 @@ body.in-study-session .content-container {
 
   let currentActiveWallpaperKey = 'aurora-mist';
 
+  const WALLPAPER_SVG_TINTS = {
+    'aurora-mist': ['rgba(74, 111, 165, 0.16)', 'rgba(90, 138, 112, 0.15)'],
+    'slate-dusk': ['rgba(70, 98, 136, 0.18)', 'rgba(95, 115, 142, 0.16)'],
+    'sage-morning': ['rgba(76, 132, 104, 0.17)', 'rgba(110, 155, 128, 0.15)'],
+    'morandi-sand': ['rgba(168, 132, 102, 0.17)', 'rgba(145, 118, 96, 0.15)'],
+    'dusty-lavender': ['rgba(128, 106, 156, 0.17)', 'rgba(106, 118, 158, 0.15)'],
+    'nordic-fjord': ['rgba(64, 122, 152, 0.18)', 'rgba(88, 148, 168, 0.15)'],
+    'amber-autumn': ['rgba(176, 136, 88, 0.17)', 'rgba(148, 116, 82, 0.15)'],
+    'minimal-paper': ['rgba(120, 136, 156, 0.14)', 'rgba(142, 156, 174, 0.12)'],
+    'midnight-indigo': ['rgba(68, 92, 138, 0.20)', 'rgba(88, 76, 128, 0.18)'],
+    'rose-clay': ['rgba(168, 112, 124, 0.17)', 'rgba(148, 106, 122, 0.15)']
+  };
+
   function applyWallpaper(presetKey, save = false) {
     let key = presetKey;
     const keys = Object.keys(WALLPAPERS);
@@ -6152,9 +4863,13 @@ body.in-study-session .content-container {
     const bgVal = isDark ? wp.dark : wp.light;
     document.documentElement.style.setProperty('--wallpaper-bg', bgVal);
 
-    // Update UI elements
-    const badge = document.getElementById('wallpaperNameBadge');
-    if (badge) badge.textContent = wp.name;
+    // Link scenic SVG mountain gradients to active wallpaper palette
+    const tints = WALLPAPER_SVG_TINTS[key] || WALLPAPER_SVG_TINTS['aurora-mist'];
+    const farStops = document.querySelectorAll('#mountGradFar stop');
+    const nearStops = document.querySelectorAll('#mountGradNear stop');
+    if (farStops.length >= 2) farStops[0].setAttribute('stop-color', tints[0]);
+    if (nearStops.length >= 2) nearStops[0].setAttribute('stop-color', tints[1]);
+
     const sel = document.getElementById('setWallpaperPreset');
     if (sel && save) sel.value = presetKey;
 
@@ -6179,12 +4894,24 @@ body.in-study-session .content-container {
   function renderWallpaperSwatches() {
     const grid = document.getElementById('wallpaperSwatchGrid');
     if (!grid) return;
-    grid.innerHTML = '';
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const existingCards = grid.querySelectorAll('.wallpaper-swatch-card[data-wp-key]');
+    if (existingCards.length === Object.keys(WALLPAPERS).length) {
+      existingCards.forEach(card => {
+        const k = card.getAttribute('data-wp-key');
+        const item = WALLPAPERS[k];
+        card.classList.toggle('active', k === currentActiveWallpaperKey);
+        const circle = card.querySelector('.wallpaper-swatch-circle');
+        if (circle && item) circle.style.background = isDark ? item.dark : item.light;
+      });
+      return;
+    }
+    grid.innerHTML = '';
     Object.keys(WALLPAPERS).forEach(k => {
       const item = WALLPAPERS[k];
       const card = document.createElement('div');
       card.className = `wallpaper-swatch-card ${k === currentActiveWallpaperKey ? 'active' : ''}`;
+      card.setAttribute('data-wp-key', k);
       card.innerHTML = `
         <div class="wallpaper-swatch-circle" style="background:${isDark ? item.dark : item.light};"></div>
         <div class="wallpaper-swatch-title">${item.name}</div>
@@ -6362,18 +5089,9 @@ function applyThemeAndTypography() {
       dockTotal.textContent = String(allIds.length);
       dockTotal.style.display = allIds.length > 0 ? 'inline-block' : 'none';
     }
-document.getElementById('navBadgeDue').textContent = String(dueIds.length);
-    document.getElementById('navBadgeTotal').textContent = String(allIds.length);
-    document.getElementById('navBadgeMistakes').textContent = String(countMistakes);
-    document.getElementById('navBadgeFavorites').textContent = String(countFavs);
-
     const hasResumableSession = appData.activeSession &&
       appData.activeSession.queue &&
       appData.activeSession.currentIndex < appData.activeSession.queue.length;
-
-    document.getElementById('navBadgeSession').textContent = hasResumableSession
-      ? `${appData.activeSession.currentIndex}/${appData.activeSession.queue.length}`
-      : '就绪';
 
     // Update Hero Banner
     const btnMain = document.getElementById('btnStartDailyMain');
@@ -6428,19 +5146,13 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     document.getElementById('statusCountMastered').textContent = String(countMastered);
     document.getElementById('statusCountNew').textContent = String(newIds.length);
 
-    // Local Daily Reminder Banner
+    // Daily reminder banner permanently disabled per user request
     const reminderBanner = document.getElementById('dailyReminderBanner');
-    if (s.dailyReminder && (dueTargetToday > 0 || newTargetToday > 0) && completedTodayCount === 0) {
-      reminderBanner.style.display = 'flex';
-      document.getElementById('dailyReminderText').textContent =
-        `⏰ 今日学习提醒：您今天有 ${dueTargetToday} 个待复习词组和 ${newTargetToday} 个新词组计划，仅需 10～15 分钟即可完成！`;
-    } else {
-      reminderBanner.style.display = 'none';
-    }
+    if (reminderBanner) reminderBanner.style.display = 'none';
   }
 
   // Start or Resume a Study Session
-  function startStudySession(sessionType, forcedMode) {
+  function startStudySession(sessionType, forcedMode, customQueueIds) {
     recalculateAllStatesForToday();
     const today = getLocalDateString();
     const s = appData.settings;
@@ -6485,12 +5197,16 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
         return;
       }
     } else if (sessionType === 'mistakes') {
-      const mistakeIds = Object.keys(appData.phrases).filter(id => {
-        const p = appData.progress[id];
-        return p && (p.inMistakeBook || p.wrongCount > 0);
-      });
-      mistakeIds.sort((a, b) => (appData.progress[b].wrongCount || 0) - (appData.progress[a].wrongCount || 0));
-      queue = mistakeIds;
+      if (Array.isArray(customQueueIds) && customQueueIds.length > 0) {
+        queue = customQueueIds.filter(id => appData.phrases[id]);
+      } else {
+        const mistakeIds = Object.keys(appData.phrases).filter(id => {
+          const p = appData.progress[id];
+          return p && (p.inMistakeBook || p.wrongCount > 0);
+        });
+        mistakeIds.sort((a, b) => (appData.progress[b].wrongCount || 0) - (appData.progress[a].wrongCount || 0));
+        queue = mistakeIds;
+      }
       mode = 'mistakes';
       label = '错题强化专练';
       if (queue.length === 0) {
@@ -6732,8 +5448,20 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     const stateLabels = { new: '首次新学', learning: '学习巩固中', review: '到期复习', mastered: '已掌握' };
     document.getElementById('studyCardStateBadge').textContent = stateLabels[prog.state] || '学习中';
 
-    document.getElementById('studyToggleFavBtn').textContent = prog.favorite ? '★ 已收藏' : '☆ 收藏';
-    document.getElementById('studyPausePhraseBtn').textContent = prog.paused ? '▶ 恢复复习' : '⏸ 暂停复习';
+    const favBtn = document.getElementById('studyToggleFavBtn');
+    if (favBtn) {
+      favBtn.textContent = prog.favorite ? '★' : '☆';
+      favBtn.title = prog.favorite ? '已收藏（点击移出）' : '加入收藏夹';
+    }
+    const pauseBtn = document.getElementById('studyPausePhraseBtn');
+    if (pauseBtn) {
+      pauseBtn.textContent = prog.paused ? '▶' : '⏸';
+      pauseBtn.title = prog.paused ? '已暂停复习（点击恢复）' : '暂停该词组后续复习';
+    }
+    const undoBtn = document.getElementById('studyUndoBtn');
+    if (undoBtn) {
+      undoBtn.style.display = (lastStudyStepSnapshot && sess.currentIndex > 0) ? 'inline-flex' : 'none';
+    }
 
     // Configure Prompt based on Mode
     const mode = sess.mode || 'en_to_zh';
@@ -6871,45 +5599,74 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     const s = appData.settings || {};
     if (s.enableSoundEffects === false) return;
 
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const now = ctx.currentTime;
+    // Dispatch audio synthesis non-blockingly so clicks and transitions render with 0ms hitch
+    setTimeout(() => {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
 
       if (type === 'click' || type === 'tap') {
-        // Crisp tactile UI click (15ms)
+        // Organic Woodblock Click (Bandpass-filtered warm transient, 3ms attack -> 22ms decay)
+        const osc = ctx.createOscillator();
+        const filter = ctx.createBiquadFilter();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(620, now);
+        osc.frequency.exponentialRampToValueAtTime(210, now + 0.022);
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(580, now);
+        filter.Q.setValueAtTime(2.2, now);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.14, now + 0.003);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.022);
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.024);
+
+      } else if (type === 'flip') {
+        // Soft Wooden Page Turn / Mechanical Detent (35ms warm resonance)
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(850, now);
-        osc.frequency.exponentialRampToValueAtTime(180, now + 0.015);
-        gain.gain.setValueAtTime(0.12, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+        osc.frequency.setValueAtTime(340, now);
+        osc.frequency.exponentialRampToValueAtTime(520, now + 0.032);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.13, now + 0.004);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start(now);
-        osc.stop(now + 0.015);
-
-      } else if (type === 'flip') {
-        // Card flip swoosh / pop sound (30ms)
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(450, now);
-        osc.frequency.exponentialRampToValueAtTime(130, now + 0.03);
-        gain.gain.setValueAtTime(0.18, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.03);
+        osc.stop(now + 0.038);
 
       } else if (type === 'correct') {
-        // Uplifting bright chord: C6 (1046.5Hz) -> E6 (1318.5Hz) -> G6 (1568Hz)
+        // Warm Marimba Fifth Interval (C5 -> G5 soft acoustic chime)
         const notes = [
-          { freq: 1046.5, delay: 0.0, dur: 0.14, gain: 0.12 },
-          { freq: 1318.5, delay: 0.05, dur: 0.16, gain: 0.14 },
-          { freq: 1568.0, delay: 0.10, dur: 0.22, gain: 0.16 }
+          { freq: 523.25, delay: 0.0, dur: 0.14, gain: 0.11 },
+          { freq: 783.99, delay: 0.055, dur: 0.20, gain: 0.13 }
+        ];
+        notes.forEach(n => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const st = now + n.delay;
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(n.freq, st);
+          gain.gain.setValueAtTime(0.001, st);
+          gain.gain.linearRampToValueAtTime(n.gain, st + 0.005);
+          gain.gain.exponentialRampToValueAtTime(0.001, st + n.dur);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(st);
+          osc.stop(st + n.dur + 0.01);
+        });
+
+      } else if (type === 'wrong') {
+        // Subtle Low Wood Muted Thud (210Hz -> 150Hz)
+        const notes = [
+          { freq: 210, delay: 0.0, dur: 0.09, gain: 0.12 },
+          { freq: 155, delay: 0.08, dur: 0.13, gain: 0.13 }
         ];
         notes.forEach(n => {
           const osc = ctx.createOscillator();
@@ -6925,34 +5682,13 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
           osc.stop(st + n.dur);
         });
 
-      } else if (type === 'wrong') {
-        // Gentle, supportive low double bonk (240Hz -> 160Hz)
-        const notes = [
-          { freq: 240, delay: 0.0, dur: 0.08, gain: 0.14 },
-          { freq: 160, delay: 0.09, dur: 0.12, gain: 0.16 }
-        ];
-        notes.forEach(n => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          const st = now + n.delay;
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(n.freq, st);
-          osc.frequency.exponentialRampToValueAtTime(n.freq * 0.75, st + n.dur);
-          gain.gain.setValueAtTime(n.gain, st);
-          gain.gain.exponentialRampToValueAtTime(0.001, st + n.dur);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(st);
-          osc.stop(st + n.dur);
-        });
-
       } else if (type === 'complete') {
-        // Celebratory fanfare (C5, E5, G5, C6 with warm finish)
+        // Serene Acoustic Triad Chord (C5 - E5 - G5 - B5)
         const notes = [
-          { freq: 523.25, delay: 0.0, dur: 0.10, gain: 0.14 },
-          { freq: 659.25, delay: 0.09, dur: 0.10, gain: 0.15 },
-          { freq: 783.99, delay: 0.18, dur: 0.12, gain: 0.16 },
-          { freq: 1046.50, delay: 0.28, dur: 0.35, gain: 0.18 }
+          { freq: 523.25, delay: 0.0, dur: 0.14, gain: 0.11 },
+          { freq: 659.25, delay: 0.08, dur: 0.16, gain: 0.12 },
+          { freq: 783.99, delay: 0.16, dur: 0.20, gain: 0.13 },
+          { freq: 987.77, delay: 0.24, dur: 0.36, gain: 0.14 }
         ];
         notes.forEach(n => {
           const osc = ctx.createOscillator();
@@ -6968,9 +5704,10 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
           osc.stop(st + n.dur);
         });
       }
-    } catch (e) {
-      // Safe fallback
-    }
+      } catch (e) {
+        // Safe fallback
+      }
+    }, 0);
   }
 
   function triggerHapticFeedback(type) {
@@ -6979,18 +5716,26 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
 
     try {
       if ('vibrate' in navigator && typeof navigator.vibrate === 'function') {
-        if (type === 'light' || type === 'tap') {
-          navigator.vibrate(12);
-        } else if (type === 'medium' || type === 'flip') {
-          navigator.vibrate(20);
-        } else if (type === 'success' || type === 'correct') {
-          navigator.vibrate([15, 35, 25]);
-        } else if (type === 'warning' || type === 'wrong') {
-          navigator.vibrate([35, 45, 35]);
-        } else if (type === 'complete') {
-          navigator.vibrate([20, 30, 25, 30, 45]);
-        } else {
+        if (type === 'rate_0') {
+          navigator.vibrate([28, 40, 28]);
+        } else if (type === 'rate_1') {
+          navigator.vibrate([18, 30, 12]);
+        } else if (type === 'rate_2') {
           navigator.vibrate(15);
+        } else if (type === 'rate_3') {
+          navigator.vibrate([10, 22, 18]);
+        } else if (type === 'light' || type === 'tap') {
+          navigator.vibrate(10);
+        } else if (type === 'medium' || type === 'flip') {
+          navigator.vibrate(16);
+        } else if (type === 'success' || type === 'correct') {
+          navigator.vibrate([12, 28, 18]);
+        } else if (type === 'warning' || type === 'wrong') {
+          navigator.vibrate([28, 40, 28]);
+        } else if (type === 'complete') {
+          navigator.vibrate([15, 25, 18, 25, 35]);
+        } else {
+          navigator.vibrate(12);
         }
       }
     } catch (e) {
@@ -7019,6 +5764,23 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     }
   }
 
+  function undoLastStudyRating() {
+    const sess = appData.activeSession;
+    if (!sess || !lastStudyStepSnapshot) return;
+    const snap = lastStudyStepSnapshot;
+    lastStudyStepSnapshot = null;
+    appData.progress[snap.phraseId] = snap.prevProg;
+    appData.dailyStats[snap.todayKey] = snap.prevTodayStats;
+    sess.currentIndex = snap.prevIndex;
+    sess.correctCount = snap.prevCorrectCount;
+    sess.wrongIds = snap.prevWrongIds;
+    sess.answerShown = true;
+    waitingManualNext = false;
+    saveState();
+    renderCurrentStudyCard();
+    showToast('↩ 已撤销上一题评分');
+  }
+
   function submitStudyRating(rating) {
     const sess = appData.activeSession;
     if (!sess || sess.currentIndex >= sess.queue.length) return;
@@ -7026,6 +5788,18 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
 
     const phraseId = sess.queue[sess.currentIndex];
     const isMistakeDrill = (sess.mode === 'mistakes');
+
+    // Save undo snapshot before mutating state
+    const todayKey = getLocalDateString();
+    lastStudyStepSnapshot = {
+      phraseId,
+      todayKey,
+      prevProg: JSON.parse(JSON.stringify(appData.progress[phraseId] || createDefaultProgress(phraseId))),
+      prevTodayStats: JSON.parse(JSON.stringify(getTodayStatsRecord())),
+      prevIndex: sess.currentIndex,
+      prevCorrectCount: sess.correctCount || 0,
+      prevWrongIds: Array.isArray(sess.wrongIds) ? [...sess.wrongIds] : []
+    };
 
     // Record study duration
     if (sessionTimerStart) {
@@ -7038,16 +5812,23 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
 
     applySpacedRepetitionFeedback(phraseId, rating, sess.mode, isMistakeDrill);
 
+    // Fluid progress pulse feedback
+    const progTrack = document.getElementById('studySessionProgressBar')?.parentElement;
+    if (progTrack) {
+      progTrack.classList.add('progress-pulse');
+      setTimeout(() => progTrack.classList.remove('progress-pulse'), 380);
+    }
+
     if (rating >= 2) {
       sess.correctCount = (sess.correctCount || 0) + 1;
       playAudioEffect('correct');
-      triggerHapticFeedback('success');
+      triggerHapticFeedback(`rate_${rating}`);
     } else {
       if (!sess.wrongIds.includes(phraseId)) {
         sess.wrongIds.push(phraseId);
       }
       playAudioEffect('wrong');
-      triggerHapticFeedback('warning');
+      triggerHapticFeedback(`rate_${rating}`);
     }
 
     if (appData.settings.autoNext) {
@@ -7091,12 +5872,14 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     document.getElementById('sumDurationText').textContent = `${mins}分${remSecs}秒`;
     document.getElementById('sumWrongCount').textContent = String((sess.wrongIds || []).length);
 
+    lastSessionWrongIds = Array.isArray(sess.wrongIds) ? [...sess.wrongIds] : [];
+    lastStudyStepSnapshot = null;
     const practiceWrongBtn = document.getElementById('sumPracticeMistakesBtn');
-    practiceWrongBtn.style.display = (sess.wrongIds && sess.wrongIds.length > 0) ? 'inline-flex' : 'none';
+    practiceWrongBtn.style.display = (lastSessionWrongIds.length > 0) ? 'inline-flex' : 'none';
 
     // Clear active session once completed
     appData.activeSession = null;
-    saveState();
+    saveState(true);
   }
 
   // Free Flashcard Deck View
@@ -7168,16 +5951,29 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     });
   }
 
-  // Library Table View
-  function renderLibraryTable() {
+  // Library Table View (Smart Cached DOM Injection)
+  let libraryCacheKey = '';
+  let libraryDataVersion = 0;
+
+  function invalidateLibraryCache() {
+    libraryDataVersion += 1;
+  }
+
+  function renderLibraryTable(force = false) {
     populateCategorySelects();
     const q = (document.getElementById('libSearchInput').value || '').trim().toLowerCase();
     const cat = document.getElementById('libFilterCategory').value;
     const diff = document.getElementById('libFilterDifficulty').value;
     const st = document.getElementById('libFilterState').value;
+    const cardGrid = document.getElementById('libCardListContainer');
+
+    const curKey = `${libraryDataVersion}|${q}|${cat}|${diff}|${st}`;
+    if (!force && curKey === libraryCacheKey && cardGrid && cardGrid.children.length > 0) {
+      return;
+    }
+    libraryCacheKey = curKey;
 
     const tbody = document.getElementById('libTableBody');
-    const cardGrid = document.getElementById('libCardListContainer');
     const emptyEl = document.getElementById('libEmptyState');
     tbody.innerHTML = '';
     if (cardGrid) cardGrid.innerHTML = '';
@@ -7211,6 +6007,10 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
       review: '<span class="badge badge-review">待复习</span>',
       mastered: '<span class="badge badge-mastered">已掌握</span>'
     };
+
+    // Use DocumentFragment to batch DOM mutations into a single reflow/repaint
+    const trFrag = document.createDocumentFragment();
+    const cardFrag = cardGrid ? document.createDocumentFragment() : null;
 
     ids.forEach(id => {
       const item = appData.phrases[id];
@@ -7249,40 +6049,51 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
           </div>
         </td>
       `;
-      tbody.appendChild(tr);
+      trFrag.appendChild(tr);
 
-      if (cardGrid) {
+      if (cardFrag) {
         const card = document.createElement('div');
         card.className = 'lib-phrase-card';
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-expanded', 'false');
         card.innerHTML = `
-          <div class="lib-card-head">
+          <div class="lib-card-head" style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
               <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span class="lib-card-title">${escapeHtml(item.phrase)}</span>
-                <button type="button" class="btn btn-sm btn-secondary" data-action="speak" data-text="${escapeHtml(item.phrase)}" title="朗读发音" style="padding:3px 9px; font-size:12px;">🔊</button>
+                <button type="button" class="btn-card-icon" data-action="speak" data-text="${escapeHtml(item.phrase)}" title="朗读" aria-label="朗读"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
               </div>
-              <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">${escapeHtml(item.pos || '短语')} · ${escapeHtml(item.category || '默认')} · ${escapeHtml(item.difficulty || '中级')}</div>
+              <div style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">${escapeHtml(item.pos || '短语')} · ${escapeHtml(item.category || '默认')}</div>
             </div>
-            <div>${stHtml}</div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              ${stHtml}
+              <span class="lib-card-expand-hint" title="展开例句" style="font-size:13px; color:var(--text-muted);">▾</span>
+            </div>
           </div>
           <div class="lib-card-meaning">${escapeHtml(item.meaning)}</div>
-          <div class="lib-card-example">
-            <div>${escapeHtml(item.example || '')}</div>
-            ${item.example_translation ? `<div style="font-size:12.5px; color:var(--text-muted); margin-top:2px;">${escapeHtml(item.example_translation)}</div>` : ''}
+          <div class="lib-card-collapsible">
+            <div class="lib-card-example" style="background:var(--bg-subtle); padding:10px 12px; border-radius:12px; margin-top:6px;">
+              <div style="font-size:13.5px; line-height:1.5;">${escapeHtml(item.example || '')}</div>
+              ${item.example_translation ? `<div style="font-size:12.5px; color:var(--text-muted); margin-top:3px;">${escapeHtml(item.example_translation)}</div>` : ''}
+            </div>
           </div>
           <div class="lib-card-footer">
-            <span style="font-size:12px; color:var(--text-muted);">熟悉度 Lv.${prog.familiarity || 0} · 间隔 ${prog.interval || 0}天 · 复习 ${prog.reviewCount || 0}次</span>
+            <span style="font-size:11.5px; color:var(--text-muted);">Lv.${prog.familiarity || 0} · ${prog.interval || 0}d · ${prog.reviewCount || 0}次</span>
             <div style="display:flex; gap:6px;">
-              <button type="button" class="btn btn-sm btn-secondary" data-action="fav" data-id="${escapeHtml(id)}" title="收藏" style="padding:4px 9px;">${prog.favorite ? '⭐' : '☆'}</button>
-              <button type="button" class="btn btn-sm btn-secondary" data-action="history" data-id="${escapeHtml(id)}" style="padding:4px 10px;">记录</button>
-              <button type="button" class="btn btn-sm btn-secondary" data-action="edit" data-id="${escapeHtml(id)}" style="padding:4px 10px;">编辑</button>
-              <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" data-id="${escapeHtml(id)}" style="padding:4px 10px;">删除</button>
+              <button type="button" class="btn-card-icon" data-action="fav" data-id="${escapeHtml(id)}" title="收藏">${prog.favorite ? '★' : '☆'}</button>
+              <button type="button" class="btn-card-icon" data-action="history" data-id="${escapeHtml(id)}" title="记录">⏱</button>
+              <button type="button" class="btn-card-icon" data-action="edit" data-id="${escapeHtml(id)}" title="编辑">✎</button>
+              <button type="button" class="btn-card-icon btn-danger-icon" data-action="delete" data-id="${escapeHtml(id)}" title="删除">🗑</button>
             </div>
           </div>
         `;
-        cardGrid.appendChild(card);
+        cardFrag.appendChild(card);
       }
     });
+
+    tbody.appendChild(trFrag);
+    if (cardGrid && cardFrag) cardGrid.appendChild(cardFrag);
   }
 
   function escapeHtml(str) {
@@ -7581,6 +6392,7 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
 
   // CSV Parser (RFC 4180 compliant)
   function parseCSVText(text) {
+    text = String(text || '').replace(/\r\n?/g, '\n');
     const rows = [];
     let curRow = [];
     let curVal = '';
@@ -7912,7 +6724,7 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
       showToast('完整数据备份已导出');
     });
     document.getElementById('quickStartStudyBtn').addEventListener('click', () => startStudySession('daily'));
-    document.getElementById('dismissReminderBtn').addEventListener('click', () => {
+    document.getElementById('dismissReminderBtn')?.addEventListener('click', () => {
       document.getElementById('dailyReminderBanner').style.display = 'none';
     });
 
@@ -7924,7 +6736,7 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
       if (dueIds.length > 0) {
         startStudySession('review_only');
       } else {
-        startStudySession('daily');
+        showToast('今日到期词组已全部复习完毕 ✨');
       }
     });
     document.getElementById('bubeiQuoteSpeakBtn')?.addEventListener('click', () => {
@@ -8084,7 +6896,8 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     // Study Summary buttons
     document.getElementById('sumBackHomeBtn').addEventListener('click', () => switchView('dashboard'));
     document.getElementById('sumMoreNewBtn').addEventListener('click', () => startStudySession('new_only'));
-    document.getElementById('sumPracticeMistakesBtn').addEventListener('click', () => startStudySession('mistakes'));
+    document.getElementById('sumPracticeMistakesBtn').addEventListener('click', () => startStudySession('mistakes', null, lastSessionWrongIds));
+    document.getElementById('studyUndoBtn')?.addEventListener('click', undoLastStudyRating);
 
     // Free Flashcard Deck controls
     document.getElementById('deckFilterCategory').addEventListener('change', () => renderFreeDeck(true));
@@ -8129,7 +6942,11 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
     });
 
     // Library search, filter & batch actions
-    document.getElementById('libSearchInput').addEventListener('input', renderLibraryTable);
+    let libSearchDebounceTimer = null;
+    document.getElementById('libSearchInput').addEventListener('input', () => {
+      clearTimeout(libSearchDebounceTimer);
+      libSearchDebounceTimer = setTimeout(renderLibraryTable, 90);
+    });
     document.getElementById('libFilterCategory').addEventListener('change', renderLibraryTable);
     document.getElementById('libFilterDifficulty').addEventListener('change', renderLibraryTable);
     document.getElementById('libFilterState').addEventListener('change', renderLibraryTable);
@@ -8165,6 +6982,7 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
           });
           saveState();
           renderLibraryTable();
+          invalidateLibraryCache();
           showToast(`已为 ${selected.length} 个词组添加标签`);
         }
       });
@@ -8186,6 +7004,7 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
           });
           saveState();
           renderAllViews();
+          invalidateLibraryCache();
           showToast(`已删除 ${selected.length} 个词组`);
         }
       });
@@ -8219,7 +7038,8 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
             delete appData.progress[id];
             saveState();
             renderAllViews();
-            showToast('词组已删除');
+            invalidateLibraryCache();
+        showToast('词组已删除');
           }
         });
       }
@@ -8261,6 +7081,7 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
           updatedAt: nowIso
         });
         saveState();
+        invalidateLibraryCache();
         showToast('词组内容已更新（原有学习进度完整保留）');
       } else {
         const newId = 'pm_' + Date.now();
@@ -8282,6 +7103,7 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
         };
         appData.progress[newId] = createDefaultProgress(newId);
         saveState();
+        invalidateLibraryCache();
         showToast('新词组已添加到词库');
       }
       resetEditorToNew();
@@ -8449,40 +7271,61 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
       });
     });
 
-    // Delegate Phrase Card actions inside #libCardListContainer to the same handler as #libTableBody
-    document.getElementById('libCardListContainer')?.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-action]');
-      if (!btn) return;
-      const action = btn.getAttribute('data-action');
-      if (action === 'speak') {
-        speakEnglishText(btn.getAttribute('data-text'));
-        return;
-      }
-      const id = btn.getAttribute('data-id');
-      if (!id || !appData.phrases[id]) return;
-      if (action === 'fav') {
-        appData.progress[id].favorite = !appData.progress[id].favorite;
-        saveState();
-        renderLibraryTable();
-        renderDashboard();
-      } else if (action === 'history') {
-        openPhraseDetailModal(id);
-      } else if (action === 'edit') {
-        loadPhraseIntoEditor(id);
-      } else if (action === 'delete') {
-        openConfirmModal({
-          title: '确认删除词组',
-          message: `确定要删除词组「${appData.phrases[id].phrase}」及其学习记录吗？`,
-          onConfirm: () => {
-            delete appData.phrases[id];
-            delete appData.progress[id];
-            saveState();
-            renderAllViews();
-            showToast('词组已删除');
+    // Unified Delegated Event Handler for #libCardListContainer (Actions + Card Expand)
+    const libCardGridEl = document.getElementById('libCardListContainer');
+    if (libCardGridEl) {
+      libCardGridEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (btn) {
+          e.stopPropagation();
+          const action = btn.getAttribute('data-action');
+          if (action === 'speak') {
+            speakEnglishText(btn.getAttribute('data-text'));
+            return;
           }
-        });
-      }
-    });
+          const id = btn.getAttribute('data-id');
+          if (!id || !appData.phrases[id]) return;
+          if (action === 'fav') {
+            appData.progress[id].favorite = !appData.progress[id].favorite;
+            btn.textContent = appData.progress[id].favorite ? '★' : '☆';
+            saveState();
+            renderDashboard();
+          } else if (action === 'history') {
+            openPhraseDetailModal(id);
+          } else if (action === 'edit') {
+            loadPhraseIntoEditor(id);
+          } else if (action === 'delete') {
+            openConfirmModal({
+              title: '确认删除词组',
+              message: `确定要删除词组「${appData.phrases[id].phrase}」及其学习记录吗？`,
+              onConfirm: () => {
+                delete appData.phrases[id];
+                delete appData.progress[id];
+                saveState();
+                renderAllViews();
+                showToast('词组已删除');
+              }
+            });
+          }
+          return;
+        }
+        const card = e.target.closest('.lib-phrase-card');
+        if (card) {
+          playAudioEffect('click');
+          triggerHapticFeedback('light');
+          const expanded = card.classList.toggle('expanded');
+          card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+      });
+
+      libCardGridEl.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('lib-phrase-card')) {
+          e.preventDefault();
+          const expanded = e.target.classList.toggle('expanded');
+          e.target.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+      });
+    }
 
     // Topbar Quick Dark Mode Toggle
     document.getElementById('topbarDarkModeBtn')?.addEventListener('click', () => {
@@ -8517,7 +7360,164 @@ document.getElementById('navBadgeDue').textContent = String(dueIds.length);
         }
       });
     }
-document.getElementById('saveSettingsBtn').addEventListener('click', saveSettingsFromForm);
+
+    let topbarScrollRaf = false;
+    window.addEventListener('scroll', () => {
+      if (!topbarScrollRaf) {
+        topbarScrollRaf = true;
+        requestAnimationFrame(() => {
+          topbarScrollRaf = false;
+          const tb = document.querySelector('.topbar');
+          if (tb) {
+            tb.classList.toggle('topbar-scrolled', window.scrollY > 20);
+          }
+        });
+      }
+    }, { passive: true });
+
+    // Tap Highlighted Phrase in Example to Speak
+    document.getElementById('studyAnswerExampleEn')?.addEventListener('click', (e) => {
+      const mark = e.target.closest('mark.bubei-phrase-highlight');
+      if (mark) {
+        e.stopPropagation();
+        speakEnglishText(mark.textContent);
+      }
+    });
+
+    // Single-Hand Swipe Gestures on #studyFlashcardContainer (with iOS 28px Edge Guard)
+    (function initStudySwipeGestures() {
+      const box = document.getElementById('studyFlashcardContainer');
+      const badge = document.getElementById('studySwipeHintPill');
+      if (!box) return;
+
+      let startX = 0;
+      let startY = 0;
+      let deltaX = 0;
+      let deltaY = 0;
+      let isTracking = false;
+      let rafPending = false;
+
+      function renderGestureFrame() {
+        rafPending = false;
+        if (!isTracking) return;
+
+        const tx = Math.max(-90, Math.min(90, deltaX * 0.45));
+        const ty = Math.max(-70, Math.min(50, deltaY * 0.4));
+        const rot = tx * 0.04;
+        box.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg)`;
+
+        const sess = appData.activeSession;
+        if (badge && sess) {
+          if (!sess.answerShown && deltaY < -32) {
+            badge.textContent = '↑ 释放翻转查看释义';
+            badge.classList.add('visible');
+          } else if (sess.answerShown && Math.abs(deltaX) > 38 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            badge.textContent = deltaX > 0 ? '→ 记住' : '← 模糊';
+            badge.classList.add('visible');
+          } else if (sess.answerShown && deltaY < -42) {
+            badge.textContent = '↑ 熟练';
+            badge.classList.add('visible');
+          } else {
+            badge.classList.remove('visible');
+          }
+        }
+      }
+
+      function scheduleFrame() {
+        if (!rafPending) {
+          rafPending = true;
+          requestAnimationFrame(renderGestureFrame);
+        }
+      }
+
+      function onStart(clientX, clientY, target, isTouch) {
+        if (currentView !== 'study') return;
+        // iOS Screen Edge Back-Swipe Protection: ignore touches starting within 28px of screen edges
+        if (isTouch && (clientX < 28 || clientX > window.innerWidth - 28)) return;
+        if (target && target.closest('button, input, select, textarea, a, mark')) return;
+        startX = clientX;
+        startY = clientY;
+        deltaX = 0;
+        deltaY = 0;
+        isTracking = true;
+        box.style.transition = 'none';
+        box.classList.add('swiping');
+        box.style.willChange = 'transform';
+
+        if (!isTouch) {
+          window.addEventListener('mousemove', onMouseMove, { passive: true });
+          window.addEventListener('mouseup', onMouseUp);
+        }
+      }
+
+      function onMove(clientX, clientY) {
+        if (!isTracking) return;
+        deltaX = clientX - startX;
+        deltaY = clientY - startY;
+        scheduleFrame();
+      }
+
+      function onEnd() {
+        if (!isTracking) return;
+        isTracking = false;
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+
+        box.classList.remove('swiping');
+        box.style.transition = 'transform 0.28s cubic-bezier(0.25, 1, 0.3, 1)';
+        box.style.transform = '';
+        box.style.willChange = 'auto';
+        if (badge) badge.classList.remove('visible');
+
+        const sess = appData.activeSession;
+        if (!sess || sess.currentIndex >= sess.queue.length) return;
+
+        if (!sess.answerShown) {
+          if (deltaY < -38 || (Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10)) {
+            revealStudyAnswer();
+          }
+          return;
+        }
+
+        if (Math.abs(deltaX) > 52 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          if (deltaX > 0) {
+            submitStudyRating(2);
+          } else {
+            submitStudyRating(1);
+          }
+        } else if (deltaY < -52 && Math.abs(deltaY) > Math.abs(deltaX)) {
+          submitStudyRating(3);
+        }
+      }
+
+      function onMouseMove(e) {
+        onMove(e.clientX, e.clientY);
+      }
+
+      function onMouseUp() {
+        onEnd();
+      }
+
+      box.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        onStart(e.touches[0].clientX, e.touches[0].clientY, e.target, true);
+      }, { passive: true });
+
+      box.addEventListener('touchmove', (e) => {
+        if (!isTracking || e.touches.length !== 1) return;
+        onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+
+      box.addEventListener('touchend', onEnd);
+      box.addEventListener('touchcancel', onEnd);
+
+      box.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        onStart(e.clientX, e.clientY, e.target, false);
+      });
+    })();
+
+    document.getElementById('saveSettingsBtn').addEventListener('click', saveSettingsFromForm);
     document.getElementById('btnTestSound')?.addEventListener('click', () => {
       playAudioEffect('correct');
       showToast('已播放正确答题音效 🎵');
@@ -8614,8 +7614,28 @@ document.getElementById('saveSettingsBtn').addEventListener('click', saveSetting
       if (typeof cb === 'function') cb(val);
     });
 
-    // Global Keyboard Shortcuts for Study View
+    // Global Keyboard Shortcuts (Modal Escape & Study View Controls)
     document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const detailModal = document.getElementById('phraseDetailModal');
+        const confirmModal = document.getElementById('confirmActionModal');
+        if (detailModal && detailModal.classList.contains('open')) {
+          detailModal.classList.remove('open');
+          return;
+        }
+        if (confirmModal && confirmModal.classList.contains('open')) {
+          closeConfirmModal();
+          return;
+        }
+      }
+      if ((e.key === 'z' || e.key === 'Z') && currentView === 'study' && lastStudyStepSnapshot) {
+        const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        if (activeTag !== 'input' && activeTag !== 'textarea') {
+          e.preventDefault();
+          undoLastStudyRating();
+          return;
+        }
+      }
       if (!appData.settings.enableShortcuts) return;
       if (currentView !== 'study') return;
       const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
@@ -8646,8 +7666,15 @@ document.getElementById('saveSettingsBtn').addEventListener('click', saveSetting
     });
   }
 
-  // Expose internal test hook for automated E2E verification
-  window.__PHRASEMASTER_TEST_API__ = {
+  // Expose internal test hook only in local/test environments
+  if (
+    location.hostname === 'localhost' ||
+    location.hostname.startsWith('127.') ||
+    location.protocol === 'file:' ||
+    location.search.includes('test')
+  ) {
+    window.__PHRASEMASTER_TEST_API__ = {
+      undoLastStudyRating,
     getAppData: () => appData,
     applySpacedRepetitionFeedback,
     checkUserSpellingMatch,
@@ -8667,7 +7694,8 @@ document.getElementById('saveSettingsBtn').addEventListener('click', saveSetting
     randomizeWallpaper,
     getWallpapers: () => WALLPAPERS,
     updateNavSlider
-  };
+    };
+  }
 
   window.addEventListener('DOMContentLoaded', () => {
     bindEvents();
